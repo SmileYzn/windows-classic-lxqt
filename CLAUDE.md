@@ -19,6 +19,7 @@ Fontes de informação que já usamos na `I386`:
 - `SHL_IMG.IN_` e `ACCESSOR.IN_`: nomes dos papéis de parede;
 - `EXPLORER.EX_`: bandeira do botão Iniciar (bitmap 176) e faixa "Windows XP Professional" (bitmap 167);
 - `USER32.DL_` e `OLE32.DL_`: cursores; `USER32.DL_` também tem os ícones de mensagem (101 aviso, 103 erro, 104 informação);
+- `BROWSEUI.DL_`: animação do Explorer (bitmap 306, 41 quadros de 22x22; idêntica à do Windows 2000);
 - `MSGINA.DL_`: tela de logon (bitmaps 101/107 faixas, 103 barra; diálogos 1500 logon, 2200 desligar, 2507 falha).
 Arquivos `*.XX_` são CAB: extrair com `cabextract`. Recursos de `.exe`/`.dll`: `7z x arquivo '.rsrc/...'`.
 
@@ -30,6 +31,7 @@ Arquivos `*.XX_` são CAB: extrair com `cabextract`. Recursos de `.exe`/`.dll`: 
 - Um pacote de ícones a definir se será um fork do github;
 - Os sons do Windows XP: o LXQT não tem suporte nativo, então a pasta Sounds guarda só os arquivos .wav (sem tema nem instalação);
 - As fontes do tema: Noto Sans do próprio Linux. Não usamos as fontes da Microsoft (nem Tahoma, MS Sans Serif ou Marlett);
+- Um tema GTK (`GTK/`), derivado do GTK 3 e do GTK 4 do win2k com as cores do XP Clássico. Sem GTK 2 (o `gtk2` saiu dos repositórios do Arch; decisão do usuário);
 - O picom é um extra opcional (`Extras/Picom`): o tema do Openbox não pode depender dele.
 
 # Caminhos
@@ -44,12 +46,14 @@ As pastas no projeto:
 7. SDDM -> Tema para o SDDM Login Manager
 8. Icons -> Tema de ícones
 
+Fora da numeração: `GTK` (temas GTK 3 e GTK 4/libadwaita) e `Extras/Picom`.
+
 Os passos do projeto serão do 1 ao 8.
 
 ## Estado atual
 - Passos 1 a 6 prontos e publicados no GitHub, mais `Extras/Picom`.
 - Passo 7 (SDDM) pronto: tema QML próprio (Qt 6, SDDM 0.21), sem QtQuick.Controls.
-- **Próximo: passo 8 (Icons).**
+- GTK 3 e GTK 4 prontos (`GTK/Windows-Classic/gtk-3.0` e `gtk-4.0`). **Próximo: passo 8 (Icons).**
 - Cada pasta tem um `README.md` com a origem de cada recurso e as limitações. Leia o da pasta antes de mexer nela.
 
 ## Decisões já tomadas
@@ -59,7 +63,10 @@ Os passos do projeto serão do 1 ao 8.
 - LXQt: o menu do XP é o `mainmenu` (menu em cascata), com o arquivo `LXQT/menu/windows-classic-applications.menu`. O `fancymenu` só recebe o botão Iniciar igual.
 - Botão Iniciar: 59x22 px, medido num print do XP.
 - SDDM: reproduz o logon clássico (diálogo 1500 do msgina), não a tela de boas-vindas do Luna. "Fazer logon em:" (Opções >>) escolhe a sessão. Fundo `#3A6EA5`.
-- Sombra dos menus (picom): `shadow-radius 4`, `offset -2,-2`, `opacity 0.5`, medida num print do XP.
+- GTK: mesmas cores da paleta Qt. ButtonDkShadow `#404040` (`@border_dark`), WindowFrame `#000000` (`@window_frame`, moldura do botão padrão e foco). A calha da barra de rolagem é xadrez branco/`#D4D0C8`. O tema fica em `themes/Windows-Classic`, junto do `openbox-3`: o `install.sh` de cada um só troca as próprias subpastas.
+- Sombra dos menus (picom): `shadow-radius 4`, `offset -2,-2`, `opacity 0.5`, medida num print do XP. Só em menus opacos (`!argb`): Firefox/Chromium/Electron desenham a própria sombra numa margem transparente.
+- GTK 4: barra de título CSD de 18 px com botões 16x14 e os glifos do Openbox (`titlebutton-*.png`). Apps libadwaita só pegam o tema pelo `@import` em `~/.config/gtk-4.0/gtk.css` (`GTK/install.sh --apply`).
+- **Licenças: o usuário não vai definir nenhuma até o fim do projeto.** Não adicione arquivos `LICENSE` nem seções de licença nos READMEs; os créditos de origem (win2k, Chicago95) ficam.
 
 # Como trabalhar
 - **Instalação para testes é no sistema e quem roda é o usuário.** Ao terminar uma tarefa, mostre os comandos (`sudo .../install.sh` e, se houver, o passo de ativação no usuário). Não instale nada no sistema nem na conta do usuário por conta própria.
@@ -81,6 +88,13 @@ Os passos do projeto serão do 1 ao 8.
 - **picom**: o shader do extra reconhece a sombra dos botões pela cor `#817E7A`, gerada por `.bg.shadow: 101` no `themerc`. Não mude um sem o outro. Regras usam `_NET_FRAME_EXTENTS@` (o `@` lê a janela do aplicativo).
 - **SDDM**: com um `qmldir` na pasta do tema, só os tipos listados nele ficam visíveis; todo componente novo precisa entrar no `qmldir`. Não dê a uma função QML o nome de uma função global do JS (ex.: `escape`): o tipo deixa de carregar. Teste com `sddm-greeter-qt6 --test-mode --theme <pasta>` no Xvfb; os erros aparecem em vermelho na tela do tema padrão (use uma tela alta para ler tudo).
 - **SDDM**: os bitmaps do msgina têm 413 px, mas só 411 são válidos (274 DLU).
+- **GTK 3 sem compositor**: a janela dos menus não recebe decoração CSD, então a moldura em `window decoration` não aparece. O `gtk-menu.css` desenha a moldura em `window.popup:not(.csd) > menu`.
+- **GTK 3**: a classe `.default` sai do botão padrão quando outro botão tem o foco (como no Windows). Para testar a moldura, ponha o foco num campo de texto.
+- **Captura no Xvfb**: o `xwd -root` mostra os menus GTK (janelas ARGB) pretos, até com o Adwaita. Para GTK, capture com `magick import -window root saida.png`.
+- **GTK 4**: `button.image-button > image` tem padding de 4 px; regras para os botões da barra de título precisam de `.image-button` no seletor para vencer.
+- **GTK 4 pelo `gtk.css` do usuário**: a folha do libadwaita também carrega (com `GTK_THEME` ela não carrega), e põe negrito nos botões. Teste os dois jeitos.
+- **Testar GTK 4 sem instalar**: o usuário não tem `gtk4`/`libadwaita`. Baixe os pacotes (`pacman -Sp gtk4 libadwaita` + `curl`), extraia no scratchpad e use `LD_LIBRARY_PATH` e `GI_TYPELIB_PATH`.
+- **Testes com Firefox no Xvfb**: nunca `pkill firefox` (mata o Firefox real do usuário); guarde o PID e use `kill $PID`.
 - **picom em VM**: sem aceleração 3D, o backend `glx` deixa de redesenhar janelas. No Xvfb isso também acontece (llvmpipe); lá, use os testes só para a primeira pintura.
 
 # GitHub
@@ -102,5 +116,5 @@ Já usadas no projeto:
 
 ```bash
 sudo pacman -S --needed cabextract 7zip icoutils imagemagick xorg-xcursorgen git github-cli \
-    xorg-server-xvfb xorg-xwd xterm xdotool noto-fonts libcanberra picom sddm
+    xorg-server-xvfb xorg-xwd xterm xdotool noto-fonts libcanberra picom sddm gtk3-demos
 ```

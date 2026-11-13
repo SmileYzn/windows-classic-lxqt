@@ -1,0 +1,165 @@
+/**********
+ * Window *
+ **********/
+
+/*
+   Contributor notes:
+   Please use two space indentions.
+   Stack all related and child selectors and selector states into a logical hierarchy to a readable degree.
+   Make sure that all changes made here are part of the GtkWindow.
+*/
+
+/* A large border area for the window client decoration is recommended so that it provides easier interactivity when the user is resizing their application windows from a border edge with the cursor. */
+window decoration,
+dialog > decoration {
+  padding: 3px;    /* Padding is required so that there is some space between the window decoration border and any internal components. */
+  border: 2px solid @border_dark;
+  background-color: @bg_color;
+  border-image: url("assets/window_decoration.png");
+  border-image-slice: 2 2 2 2;
+  box-shadow: none; }
+
+/* Server-side decoration (SSD) */
+window.ssd headerbar,
+window.ssd .titlebar {
+  border-radius: 0px;
+  padding: 0px;
+  margin: 0px;
+  border: 3px solid transparent;
+  border-bottom: 1px solid transparent;
+  background-color: @window_title_bg_color;
+  background-image: linear-gradient(to right, @window_title_bg_color, @window_title_bg_color_2);
+  text-shadow: none; }
+  window.ssd .titlebar:backdrop {
+    padding: 0px;
+    margin: 0px;
+    background-color: @selected_inactive_bg_color;
+    background-image: linear-gradient(to right, @inactive_title_bg_color, @inactive_title_bg_color_2);
+   color: @inactive_title_text_color; }
+  window.ssd .titlebar label {
+    padding: 0px;
+    margin: 0px;
+    font-size: 8pt;
+    color: @window_title_text_color; }
+    window.ssd .titlebar label:backdrop,
+    window.ssd .titlebar:backdrop label {
+      color: @inactive_title_text_color; }
+
+/* Muffin (Cinnamon) and Mutter frames. These window managers no longer read metacity-1 themes:
+   they draw the frame with this CSS, as window.background.ssd > decoration >
+   headerbar.titlebar.default-decoration > label.title and button.titlebutton > image.
+   The decoration is drawn over the whole frame and the title bar over its top part, across
+   the full width, so the title bar draws the top, left and right edges of the Windows 2000
+   frame itself (ssd_titlebar_frame.png, the pixels of the xfwm4 theme) and the decoration
+   the rest, with no top edge. The title bar height is the largest of its min-height, the
+   title text and the buttons (Muffin reserves 16px for a button icon), plus its borders:
+   4px frame + 18px bar, as in xfwm4. Muffin always centres the title. */
+/* The left, right and bottom edges of the frame are inset shadows inside the padding, not a
+   border-image: drawn in the border area they showed through on the desktop as a 2px gap
+   between the window and its shadow. The order matters (the last shadow is on top): the
+   outer light column runs down to the inner dark row, as in Windows 2000. */
+window.ssd > decoration {
+  padding: 0px 4px 4px 4px;
+  border: none;
+  border-image: none;
+  border-radius: 0px;
+  box-shadow: inset 2px 0px #FFFFFF, inset -2px -2px #808080,
+              inset 1px 0px #D4D0C8, inset -1px -1px #000000; }
+  /* :backdrop too: "window.ssd .titlebar:backdrop" above is more specific and would drop
+     the 2px right padding of inactive windows, moving their buttons 2px to the right. */
+  window.ssd > decoration > headerbar.default-decoration,
+  window.ssd > decoration > headerbar.default-decoration:backdrop {
+    min-height: 18px;
+    padding: 0px 2px 0px 0px;
+    margin: 0px;
+    border: 4px solid @border_dark;
+    border-bottom-width: 0px;
+    border-image: url("assets/ssd_titlebar_frame.png");
+    border-image-slice: 4 4 0 4;
+    background-clip: padding-box; }
+    window.ssd > decoration > headerbar.default-decoration label.title {
+      margin: 0px;
+      font-weight: bold;
+      font-size: 9pt; }
+    /* Muffin paints each button's CSS background over the whole button and draws the
+       window-*-symbolic icon on top, centred in a 16px area it does not let the theme move.
+       That icon sat 1px too high, so it is made transparent and the 16x16 images carry the
+       xfwm4 button with its glyph (same pixels as the xfwm4 .xpm files) under two transparent rows.
+       They are not scaled (the 18x18 ones used by GTK title bars came out blurred). Muffin
+       sizes a button as its 16px icon plus border, padding and margin and centres it in the
+       bar: 1px of top padding and margin, with the image 1px down, puts the 14px button 2px
+       below the top of the 18px bar and 2px above its bottom, as in xfwm4. Muffin also puts
+       a fixed 6px between buttons and counts the decoration's right edge twice, so the
+       -2px/-4px side margins (one value for every button) bring the buttons together and
+       leave close 2px from the frame, as in xfwm4; close cannot get its own gap. */
+    window.ssd > decoration > headerbar.default-decoration button.titlebutton {
+      min-width: 16px;
+      min-height: 14px;
+      margin: 1px -4px 0px -2px;
+      padding: 1px 0px 0px 0px;
+      border: none;
+      box-shadow: none;
+      background-color: transparent;
+      background-image: url("buttons/ssd_button_normal.png");
+      background-size: 16px 16px;
+      background-position: 0px 1px;
+      background-repeat: no-repeat; }
+      window.ssd > decoration > headerbar.default-decoration button.titlebutton:active {
+        background-image: url("buttons/ssd_button_pressed.png"); }
+      window.ssd > decoration > headerbar.default-decoration button.titlebutton.close {
+        background-image: url("buttons/ssd_close.png"); }
+      window.ssd > decoration > headerbar.default-decoration button.titlebutton.close:active {
+        background-image: url("buttons/ssd_close_pressed.png"); }
+      window.ssd > decoration > headerbar.default-decoration button.titlebutton.maximize {
+        background-image: url("buttons/ssd_maximize.png"); }
+      window.ssd > decoration > headerbar.default-decoration button.titlebutton.maximize:active {
+        background-image: url("buttons/ssd_maximize_pressed.png"); }
+      window.ssd.maximized > decoration > headerbar.default-decoration button.titlebutton.maximize {
+        background-image: url("buttons/ssd_restore.png"); }
+      window.ssd.maximized > decoration > headerbar.default-decoration button.titlebutton.maximize:active {
+        background-image: url("buttons/ssd_restore_pressed.png"); }
+      window.ssd > decoration > headerbar.default-decoration button.titlebutton.minimize {
+        background-image: url("buttons/ssd_minimize.png"); }
+      window.ssd > decoration > headerbar.default-decoration button.titlebutton.minimize:active {
+        background-image: url("buttons/ssd_minimize_pressed.png"); }
+      /* The window menu button (the application icon on the left) has no class of its
+         own: Muffin only adds close, maximize and minimize. In Windows 2000 the icon has no
+         button under it. */
+      window.ssd > decoration > headerbar.default-decoration button.titlebutton:not(.close):not(.maximize):not(.minimize),
+      window.ssd > decoration > headerbar.default-decoration button.titlebutton:not(.close):not(.maximize):not(.minimize):active {
+        background-image: none; }
+      window.ssd > decoration > headerbar.default-decoration button.titlebutton.close,
+      window.ssd > decoration > headerbar.default-decoration button.titlebutton.maximize,
+      window.ssd > decoration > headerbar.default-decoration button.titlebutton.minimize,
+      window.ssd > decoration > headerbar.default-decoration button.titlebutton.close image,
+      window.ssd > decoration > headerbar.default-decoration button.titlebutton.maximize image,
+      window.ssd > decoration > headerbar.default-decoration button.titlebutton.minimize image {
+        color: transparent;
+        -gtk-icon-shadow: none; }
+      window.ssd > decoration > headerbar.default-decoration button.titlebutton image {
+        margin: 0px;
+        padding: 0px; }
+  /* Maximized and tiled windows have no frame, as in Windows 2000. */
+  window.ssd.maximized > decoration,
+  window.ssd.tiled > decoration {
+    padding: 0px;
+    border: none;
+    border-image: none;
+    box-shadow: none; }
+    /* Without the frame, the side padding keeps the icon 2px from the left edge and close
+       2px from the right edge, as in a maximized Windows 2000 window, and the buttons sit
+       1px higher in the bar (Muffin places them lower when the bar has no top border). */
+    window.ssd.maximized > decoration > headerbar.default-decoration,
+    window.ssd.tiled > decoration > headerbar.default-decoration {
+      padding: 0px 6px 0px 4px;
+      border: none;
+      border-image: none; }
+      window.ssd.maximized > decoration > headerbar.default-decoration button.titlebutton,
+      window.ssd.tiled > decoration > headerbar.default-decoration button.titlebutton {
+        background-position: 0px 0px; }
+
+window.csd tooltip {
+  border-radius: 0;
+  border: 0 none @border_dark;
+  box-shadow: none; }
+

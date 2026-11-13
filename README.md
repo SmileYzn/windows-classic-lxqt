@@ -15,6 +15,7 @@ Os recursos (cores, medidas, imagens, cursores e sons) foram tirados da mídia d
 | [`Openbox`](Openbox) | Tema de janelas: barra de título em degradê, botões do Classic, moldura de 4 px | ✅ |
 | [`Cursors`](Cursors) | Cursores padrão do XP (32 e 64 px) | ✅ |
 | [`Sounds`](Sounds) | Os 35 sons `.wav` do XP (só os arquivos: o LXQt não tem sons de evento) | ✅ |
+| [`GTK`](GTK) | Tema GTK 3 e GTK 4/libadwaita com as cores do Clássico do XP (apps GTK iguais aos Qt) | ✅ |
 | [`LXQT`](LXQT) | Painel, botão e menu Iniciar do XP, Executar, notificações e paleta de cores | ✅ |
 | [`Extras/Picom`](Extras/Picom) | Opcional: relevo 3D de 2 px nas janelas e sombra dos menus, via picom | ✅ |
 | [`SDDM`](SDDM) | Tela de logon clássica do XP ("Fazer logon no Windows") | ✅ |
@@ -36,6 +37,7 @@ sudo Fonts/install.sh
 sudo Openbox/install.sh
 sudo Cursors/install.sh
 sudo LXQT/install.sh
+sudo GTK/install.sh
 sudo SDDM/install.sh --enable   # tela de logon (vale no próximo boot)
 ```
 
@@ -45,12 +47,13 @@ Ativação no seu usuário (cada script faz backup do que altera):
 Openbox/install.sh --apply     # tema, fonte e ordem dos botões no ~/.config/openbox/rc.xml
 Cursors/install.sh --apply     # cursor no LXQt (vale no próximo login)
 LXQT/apply.sh --panel          # tema, paleta, estilo Windows e painel no layout do XP
+GTK/install.sh --apply         # tema GTK 3 e GTK 4/libadwaita
 pkill -x lxqt-panel            # a sessão reabre o painel
 
 Extras/Picom/install.sh        # opcional, requer picom e aceleração 3D
 ```
 
-Também dá para ativar à mão em **Configurações do LXQt → Aparência**: tema "Windows-Classic", estilo dos widgets "Windows", paleta "Windows-Classic" e tema do Openbox "Windows-Classic".
+Também dá para ativar à mão em **Configurações do LXQt → Aparência**: tema "Windows-Classic", estilo dos widgets "Windows", paleta "Windows-Classic", estilo GTK 3 "Windows-Classic" e tema do Openbox "Windows-Classic". Os apps GTK 4/libadwaita só pegam o tema pelo `GTK/install.sh --apply`.
 
 Cada pasta tem um `README.md` com os detalhes, a origem de cada recurso e as limitações conhecidas.
 
@@ -63,12 +66,13 @@ Openbox/build.sh                        # glifos dos botões (pixel art, não us
 Cursors/build.sh /caminho/para/I386
 LXQT/build.sh    /caminho/para/I386
 SDDM/build.sh    /caminho/para/I386
+GTK/build.sh     /caminho/para/I386
 ```
 
 ## Referências
 
 - [pixelocdguy/windows-classic](https://github.com/pixelocdguy/windows-classic): tema semelhante para LXQt, usado como ponto de partida para algumas ideias do painel.
-- [smileyzn/win2k](https://github.com/smileyzn/win2k): tema Windows 2000 para XFCE; base dos cursores.
+- [smileyzn/win2k](https://github.com/smileyzn/win2k): tema Windows 2000 para XFCE; base dos cursores e do tema GTK (que por sua vez vem do [Chicago95](https://github.com/grassmunk/Chicago95)).
 
 ## Aviso
 
