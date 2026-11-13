@@ -39,8 +39,10 @@ RULES = ["""{
   shader = "windows-classic.glsl";
   corner-radius = 0;
 }""", """{
-  # Windows Classic: sombra dos menus ("Mostrar sombras sob os menus" do XP)
-  match = "window_type = 'popup_menu' || window_type = 'dropdown_menu'";
+  # Windows Classic: sombra dos menus ("Mostrar sombras sob os menus" do XP).
+  # Menus com transparência (argb: Firefox, Chromium, Electron) desenham a
+  # própria sombra numa margem transparente; a do picom ficaria descolada.
+  match = "(window_type = 'popup_menu' || window_type = 'dropdown_menu') && !argb";
   shadow = true;
   full-shadow = false;
 }"""]

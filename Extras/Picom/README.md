@@ -33,7 +33,7 @@ O script faz backup do `picom.conf`, troca o backend para `glx`, ajusta a sombra
   corner-radius = 0;
 },
 {
-  match = "window_type = 'popup_menu' || window_type = 'dropdown_menu'";
+  match = "(window_type = 'popup_menu' || window_type = 'dropdown_menu') && !argb";
   shadow = true;
   full-shadow = false;
 }
@@ -52,6 +52,7 @@ Com esses valores, a sombra fica igual à do XP com "Mostrar sombras sob os menu
 
 - `_NET_FRAME_EXTENTS@[0] = 4`: janelas com a moldura de 4 px do tema. O `@` faz o picom ler a propriedade da janela do aplicativo, onde o Openbox a grava.
 - `popup_menu && !class_g`: menus do próprio Openbox (os do Qt/GTK têm `WM_CLASS` e ficam de fora).
+- `!argb`: menus com transparência ficam sem a sombra do picom. É o caso do Firefox, do Chromium e de apps Electron. Eles desenham os menus com cantos arredondados e a própria sombra, dentro de uma margem transparente de ~5 px em volta do menu. O picom calcula a sombra pela janela inteira, então ela ficava descolada do menu, com uma faixa do fundo no meio, além da sombra do próprio app. Os menus do LXQt, do Qt, do GTK 3 e do Openbox são opacos e continuam com a sombra do XP.
 
 Se o seu `picom.conf` usa opções antigas (`shadow-exclude`, `wintypes` etc.), que não podem ser combinadas com `rules`, o script não altera nada. Nesse caso, adicione a regra acima à mão.
 
