@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Run...
+Name[pt_BR]=Executar...
+Icon=system-run
+Exec=lxqt-runner
+Categories=X-WindowsClassic;
+OnlyShowIn=LXQt;

@@ -1,0 +1,321 @@
+/*
+ * Windows Classic — LXQt Panel
+ *
+ * Barra de tarefas do tema Clássico do Windows XP. Cores do esquema
+ * "Windows Classic" (I386/HIVEDEF.INF):
+ *   ButtonFace #D4D0C8   ButtonHilight #FFFFFF   ButtonShadow #808080
+ *   ButtonDkShadow #404040   Hilight #0A246A   InfoWindow #FFFFE1
+ *
+ * Pensado para o estilo Qt "Windows" (Configurações do LXQt → Aparência →
+ * Estilo dos widgets), que já desenha os botões das tarefas no padrão
+ * Clássico: elevados e, no ativo, afundados com fundo pontilhado.
+ *
+ * Plugins previstos, na ordem do XP:
+ *   mainmenu | quicklaunch | taskbar | statusnotifier tray volume worldclock
+ */
+
+/*
+ * Barra de tarefas: face cinza com relevo de 2 px voltado para a tela
+ */
+LXQtPanel #BackgroundWidget {
+    background: #D4D0C8;
+    color: #000000;
+}
+
+LXQtPanel[position="Bottom"] #BackgroundWidget {
+    border-top: 2px solid transparent;
+    border-image: url(images/taskbar-bottom.png) 2 0 0 0 repeat;
+}
+
+LXQtPanel[position="Top"] #BackgroundWidget {
+    border-bottom: 2px solid transparent;
+    border-image: url(images/taskbar-top.png) 0 0 2 0 repeat;
+}
+
+LXQtPanel[position="Left"] #BackgroundWidget {
+    border-right: 2px solid transparent;
+    border-image: url(images/taskbar-left.png) 0 2 0 0 repeat;
+}
+
+LXQtPanel[position="Right"] #BackgroundWidget {
+    border-left: 2px solid transparent;
+    border-image: url(images/taskbar-right.png) 0 0 0 2 repeat;
+}
+
+/*
+ * Dicas (tooltips) amarelas do XP
+ */
+QToolTip {
+    background: #FFFFE1;
+    color: #000000;
+    border: 1px solid #000000;
+    padding: 1px;
+}
+
+/*
+ * Botão Iniciar (mainmenu e fancymenu)
+ * No XP: 59x22 px, a 2 px da borda; bandeira 16x16 logo após o relevo e
+ * "Iniciar" em negrito 8 pt.
+ */
+#MainMenu,
+#FancyMenu {
+    qproperty-icon: url(images/start.png);
+    qproperty-iconSize: 16px 16px;
+    font-weight: bold;
+    font-size: 8pt;
+    color: #000000;
+    background: #D4D0C8;
+    border: 2px solid transparent;
+    border-image: url(images/button.png) 2;
+    /* O Qt soma margens internas ao botão; os valores negativos as anulam
+       para chegar aos 59 px do XP */
+    padding: 0px -8px 0px -2px;
+    margin: 2px 0px 2px 2px;
+}
+
+#MainMenu:pressed,
+#FancyMenu:pressed {
+    border-image: url(images/button-pressed.png) 2;
+    padding: 1px -9px 0px -1px;
+}
+
+/*
+ * Menu Iniciar: moldura 3D, faixa "Windows XP Professional" à esquerda.
+ * A fonte do menu herda a do botão (negrito), então voltamos ao normal.
+ */
+#TopLevelMainMenu,
+#TopLevelMainMenu QMenu,
+#FancyMenu QMenu {
+    font-weight: normal;
+    font-size: 9pt;
+    color: #000000;
+    background-color: #D4D0C8;
+    border: 2px solid transparent;
+    border-image: url(images/frame.png) 2;
+    padding: 1px;
+}
+
+#TopLevelMainMenu {
+    background: #D4D0C8 url(images/banner.png) no-repeat bottom left;
+}
+
+/* Primeiro nível: ícones de 32 px e itens de 48 px, como no XP */
+#TopLevelMainMenu {
+    icon-size: 32px;
+}
+
+#TopLevelMainMenu::icon {
+    width: 32px;
+    height: 32px;
+    padding-left: 6px;
+}
+
+#TopLevelMainMenu::item {
+    margin-left: 21px;
+    padding: 8px 32px 8px 14px;
+    border: none;
+    background: transparent;
+}
+
+/* Submenus: ícones de 16 px e itens de 20 px */
+#TopLevelMainMenu QMenu::item {
+    padding: 2px 24px 2px 4px;
+    border: none;
+    background: transparent;
+}
+
+#TopLevelMainMenu::item:selected,
+#TopLevelMainMenu QMenu::item:selected {
+    color: #FFFFFF;
+    background: #0A246A;
+}
+
+#TopLevelMainMenu::item:disabled,
+#TopLevelMainMenu QMenu::item:disabled {
+    color: #808080;
+}
+
+#TopLevelMainMenu QMenu::icon {
+    padding-left: 3px;
+}
+
+/* Separador "gravado": linha cinza sobre linha branca */
+#TopLevelMainMenu::separator,
+#TopLevelMainMenu QMenu::separator {
+    height: 2px;
+    margin: 3px 1px;
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #FFFFFF;
+}
+
+#TopLevelMainMenu::separator {
+    margin-left: 22px;
+}
+
+#TopLevelMainMenu::right-arrow,
+#TopLevelMainMenu QMenu::right-arrow {
+    image: url(images/arrow.png);
+    width: 4px;
+    height: 7px;
+    margin-right: 8px;
+}
+
+#TopLevelMainMenu::right-arrow:selected,
+#TopLevelMainMenu QMenu::right-arrow:selected {
+    image: url(images/arrow-selected.png);
+}
+
+/* Janela do fancymenu: também herda a fonte do botão */
+#TopLevelFancyMenu,
+#TopLevelFancyMenu QWidget {
+    font-weight: normal;
+    font-size: 9pt;
+}
+
+#TopLevelFancyMenu {
+    background: #D4D0C8;
+    border: 2px solid transparent;
+    border-image: url(images/frame.png) 2;
+}
+
+/* Busca e resultados (o XP não tem; ficam no pé do menu, ao lado da faixa) */
+#MainMenu QLineEdit,
+#TopLevelMainMenu QLineEdit {
+    margin: 2px 2px 2px 22px;
+    background: #FFFFFF;
+    border: 2px solid transparent;
+    border-image: url(images/field.png) 2;
+    font-style: italic;
+}
+
+#MainMenu ActionView,
+#TopLevelMainMenu ActionView {
+    margin-left: 21px;
+    background: #FFFFFF;
+    border: none;
+}
+
+#MainMenu ActionView::item:selected,
+#TopLevelMainMenu ActionView::item:selected {
+    color: #FFFFFF;
+    background: #0A246A;
+}
+
+/*
+ * Inicialização rápida: ícones planos, relevo só ao passar o mouse
+ * (desenhado pelo estilo Windows)
+ */
+#QuickLaunch {
+    margin-left: 4px;
+    margin-right: 2px;
+}
+
+/*
+ * Botões das tarefas: o estilo Windows desenha o relevo; aqui só o negrito
+ * da tarefa ativa, como no XP.
+ */
+#TaskBar LXQtTaskButton {
+    margin: 2px 1px 2px 2px;
+}
+
+#TaskBar LXQtTaskButton:checked {
+    font-weight: bold;
+}
+
+#TaskBar QToolButton[urgent="true"] {
+    color: #FFFFFF;
+    background: #0A246A;
+}
+
+/*
+ * Área de notificação ("bandeja"): uma caixa afundada de 1 px, dos ícones
+ * até o relógio. As bordas ficam nos invólucros dos plugins
+ * (#<plugin>Plugin), que existem mesmo quando o plugin está vazio.
+ */
+#StatusNotifierPlugin,
+#TrayPlugin,
+#LXQtMountPlugin,
+#VolumePlugin,
+#KbIndicatorPlugin {
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #FFFFFF;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+#StatusNotifierPlugin {
+    border-left: 1px solid #808080;
+    margin-left: 4px;
+    padding-left: 2px;
+}
+
+#WorldClockPlugin {
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+    margin: 2px 2px 2px 0px;
+}
+
+#StatusNotifier QToolButton,
+#Tray QToolButton,
+#LXQtMount QToolButton,
+#Volume QToolButton {
+    border: none;
+    padding: 0px 1px;
+}
+
+#WorldClockContent {
+    color: #000000;
+    padding: 0px 8px;
+}
+
+/*
+ * Pop-ups (relógio, volume, discos)
+ */
+#WorldClockPopup,
+VolumePopup,
+#LXQtMountPopup {
+    background: #D4D0C8;
+    border: 2px solid transparent;
+    border-image: url(images/frame.png) 2;
+}
+
+#LXQtMountPopup #DiskButton:hover,
+#LXQtMountPopup > MenuDiskItem:hover {
+    color: #FFFFFF;
+    background: #0A246A;
+}
+
+/*
+ * Área de trabalho (botão "Mostrar área de trabalho") e áreas de trabalho
+ */
+#ShowDesktop {
+    margin-left: 2px;
+}
+
+#DesktopSwitch QToolButton:checked,
+#DesktopSwitch QToolButton:on {
+    font-weight: bold;
+}
+
+#DesktopSwitch QToolButton[urgent="true"] {
+    color: #FFFFFF;
+    background: #0A246A;
+}
+
+/*
+ * Espaçador: sulco vertical gravado
+ */
+#Spacer[type="lined"][orientation="horizontal"] {
+    margin: 3px 2px;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #FFFFFF;
+    max-width: 2px;
+}
+
+#Spacer[type="lined"][orientation="vertical"] {
+    margin: 2px 3px;
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #FFFFFF;
+    max-height: 2px;
+}

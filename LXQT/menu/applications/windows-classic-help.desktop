@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Help and Support
+Name[pt_BR]=Ajuda e suporte
+Icon=help-browser
+Exec=lxqt-about
+Categories=X-WindowsClassic;
+OnlyShowIn=LXQt;

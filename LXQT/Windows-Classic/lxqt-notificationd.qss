@@ -1,0 +1,28 @@
+/*
+ * Windows Classic — notificações no estilo do balão do XP
+ * (InfoWindow #FFFFE1, borda preta, título em negrito)
+ */
+Notification {
+    background: #FFFFE1;
+    border: 1px solid #000000;
+    margin: 0px;
+}
+
+QLabel {
+    color: #000000;
+}
+
+#summaryLabel {
+    font-weight: bold;
+}
+
+#appLabel {
+    color: #808080;
+}
+
+#closeButton {
+    qproperty-icon: url(images/close.png);
+    qproperty-iconSize: 16px 14px;
+    border: none;
+    padding: 0px;
+}

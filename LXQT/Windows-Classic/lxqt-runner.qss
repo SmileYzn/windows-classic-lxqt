@@ -1,0 +1,35 @@
+/*
+ * Windows Classic — LXQt Runner (Alt+F2), no lugar do "Executar..." do XP
+ */
+#panel {
+    background: #D4D0C8;
+    border: 2px solid transparent;
+    border-image: url(images/frame.png) 2;
+    padding: 2px;
+}
+
+#closeButton {
+    qproperty-icon: url(images/close.png);
+    qproperty-iconSize: 16px 14px;
+    border: none;
+    padding: 0px;
+}
+
+#panel QLineEdit {
+    background: #FFFFFF;
+    color: #000000;
+    border: 2px solid transparent;
+    border-image: url(images/field.png) 2;
+    selection-background-color: #0A246A;
+    selection-color: #FFFFFF;
+}
+
+#commandList {
+    background: #FFFFFF;
+    color: #000000;
+    border: 2px solid transparent;
+    border-image: url(images/field.png) 2;
+    margin: 0px 2px 2px 2px;
+    selection-background-color: #0A246A;
+    selection-color: #FFFFFF;
+}

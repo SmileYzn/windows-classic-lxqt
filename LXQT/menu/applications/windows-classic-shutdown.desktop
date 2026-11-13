@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Shut Down...
+Name[pt_BR]=Desligar o computador...
+Icon=system-shutdown
+Exec=lxqt-leave
+Categories=X-WindowsClassic;
+OnlyShowIn=LXQt;

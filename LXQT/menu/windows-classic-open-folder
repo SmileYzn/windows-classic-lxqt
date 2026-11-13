@@ -1,0 +1,6 @@
+#!/bin/sh
+# Abre uma pasta do usuário (xdg-user-dirs) no gerenciador de arquivos.
+# Uso: windows-classic-open-folder DOCUMENTS|PICTURES|MUSIC|...
+dir=$(xdg-user-dir "${1:-DOCUMENTS}" 2>/dev/null)
+[ -d "$dir" ] || dir=$HOME
+exec xdg-open "$dir"

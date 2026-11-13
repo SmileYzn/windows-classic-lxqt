@@ -1,0 +1,219 @@
+<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
+ "http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">
+
+<!--
+  Windows Classic: menu Iniciar no formato do Windows XP clássico.
+
+    Programas ▸ (Acessórios ▸ [Acessibilidade ▸, Ferramentas do sistema ▸], ...)
+    Documentos ▸
+    Configurações ▸
+    Pesquisar ▸
+    Ajuda e suporte
+    Executar...
+    ─────────
+    Fazer logoff...
+    Desligar o computador...
+
+  @APPDIR@ e @DIRDIR@ são trocados pelo install.sh.
+-->
+<Menu>
+	<Name>Applications</Name>
+	<Directory>lxqt-menu-applications.directory</Directory>
+
+	<DefaultAppDirs/>
+	<DefaultDirectoryDirs/>
+	<DefaultMergeDirs/>
+	<AppDir>@APPDIR@</AppDir>
+	<DirectoryDir>@DIRDIR@</DirectoryDir>
+
+	<!-- Itens do primeiro nível -->
+	<Include>
+		<Filename>windows-classic-help.desktop</Filename>
+		<Filename>windows-classic-run.desktop</Filename>
+		<Filename>windows-classic-logoff.desktop</Filename>
+		<Filename>windows-classic-shutdown.desktop</Filename>
+	</Include>
+
+	<!-- Programas -->
+	<Menu>
+		<Name>Programs</Name>
+		<Directory>windows-classic-programs.directory</Directory>
+
+		<Menu>
+			<Name>Accessories</Name>
+			<Directory>windows-classic-accessories.directory</Directory>
+			<Include>
+				<And>
+					<Category>Utility</Category>
+					<Not><Category>Accessibility</Category></Not>
+					<Not><Category>System</Category></Not>
+				</And>
+			</Include>
+
+			<Menu>
+				<Name>Accessibility</Name>
+				<Directory>windows-classic-accessibility.directory</Directory>
+				<Include>
+					<And>
+						<Category>Accessibility</Category>
+						<Not><Category>Settings</Category></Not>
+					</And>
+				</Include>
+			</Menu>
+
+			<Menu>
+				<Name>System Tools</Name>
+				<Directory>windows-classic-system-tools.directory</Directory>
+				<Include>
+					<And>
+						<Category>System</Category>
+						<Not><Category>Settings</Category></Not>
+						<Not><Category>PackageManager</Category></Not>
+						<Not><Category>X-Leave</Category></Not>
+						<Not><Category>Screensaver</Category></Not>
+						<Not><Category>X-WindowsClassic</Category></Not>
+						<Not><Filename>lxqt-about.desktop</Filename></Not>
+					</And>
+				</Include>
+			</Menu>
+
+			<Layout>
+				<Merge type="menus"/>
+				<Merge type="files"/>
+			</Layout>
+		</Menu>
+
+		<Menu>
+			<Name>Development</Name>
+			<Directory>lxqt-development.directory</Directory>
+			<Include><Category>Development</Category></Include>
+		</Menu>
+
+		<Menu>
+			<Name>Education &amp; Science</Name>
+			<Directory>lxqt-education-science.directory</Directory>
+			<Include>
+				<Or>
+					<Category>Education</Category>
+					<Category>Science</Category>
+				</Or>
+			</Include>
+		</Menu>
+
+		<Menu>
+			<Name>Games</Name>
+			<Directory>lxqt-game.directory</Directory>
+			<Include><Category>Game</Category></Include>
+		</Menu>
+
+		<Menu>
+			<Name>Graphics</Name>
+			<Directory>lxqt-graphics.directory</Directory>
+			<Include>
+				<And>
+					<Category>Graphics</Category>
+					<Not><Category>Utility</Category></Not>
+				</And>
+			</Include>
+		</Menu>
+
+		<Menu>
+			<Name>Internet</Name>
+			<Directory>lxqt-network.directory</Directory>
+			<Include><Category>Network</Category></Include>
+		</Menu>
+
+		<Menu>
+			<Name>Multimedia</Name>
+			<Directory>lxqt-audio-video.directory</Directory>
+			<Include><Category>AudioVideo</Category></Include>
+		</Menu>
+
+		<Menu>
+			<Name>Office</Name>
+			<Directory>lxqt-office.directory</Directory>
+			<Include><Category>Office</Category></Include>
+		</Menu>
+
+		<Menu>
+			<Name>Other</Name>
+			<Directory>lxqt-other.directory</Directory>
+			<OnlyUnallocated/>
+			<Include>
+				<And>
+					<Not><Category>Core</Category></Not>
+					<Not><Category>Settings</Category></Not>
+					<Not><Category>Screensaver</Category></Not>
+					<Not><Category>X-Leave</Category></Not>
+					<Not><Category>X-WindowsClassic</Category></Not>
+					<Not><Filename>lxqt-about.desktop</Filename></Not>
+				</And>
+			</Include>
+		</Menu>
+
+		<Layout>
+			<Merge type="menus"/>
+			<Merge type="files"/>
+		</Layout>
+	</Menu>
+
+	<!-- Documentos -->
+	<Menu>
+		<Name>Documents</Name>
+		<Directory>windows-classic-documents.directory</Directory>
+		<Include>
+			<Filename>windows-classic-my-documents.desktop</Filename>
+			<Filename>windows-classic-my-pictures.desktop</Filename>
+			<Filename>windows-classic-my-music.desktop</Filename>
+		</Include>
+		<Layout>
+			<Filename>windows-classic-my-documents.desktop</Filename>
+			<Separator/>
+			<Filename>windows-classic-my-pictures.desktop</Filename>
+			<Filename>windows-classic-my-music.desktop</Filename>
+		</Layout>
+	</Menu>
+
+	<!-- Configurações: Painel de controle + configurações do sistema -->
+	<Menu>
+		<Name>Settings</Name>
+		<Directory>windows-classic-settings.directory</Directory>
+		<Include>
+			<Filename>windows-classic-control-panel.desktop</Filename>
+			<Or>
+				<Category>Settings</Category>
+				<Category>PackageManager</Category>
+			</Or>
+		</Include>
+		<Exclude>
+			<Filename>lxqt-config.desktop</Filename>
+		</Exclude>
+		<Layout>
+			<Filename>windows-classic-control-panel.desktop</Filename>
+			<Separator/>
+			<Merge type="menus"/>
+			<Merge type="files"/>
+		</Layout>
+	</Menu>
+
+	<!-- Pesquisar -->
+	<Menu>
+		<Name>Search</Name>
+		<Directory>windows-classic-search.directory</Directory>
+		<Include>
+			<Filename>windows-classic-search-files.desktop</Filename>
+		</Include>
+	</Menu>
+
+	<Layout>
+		<Menuname>Programs</Menuname>
+		<Menuname>Documents</Menuname>
+		<Menuname>Settings</Menuname>
+		<Menuname>Search</Menuname>
+		<Filename>windows-classic-help.desktop</Filename>
+		<Filename>windows-classic-run.desktop</Filename>
+		<Separator/>
+		<Filename>windows-classic-logoff.desktop</Filename>
+		<Filename>windows-classic-shutdown.desktop</Filename>
+	</Layout>
+</Menu>

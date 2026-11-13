@@ -1,0 +1,9 @@
+# Backups criados pelos scripts de instalação
+*.bak.*
+
+# Python
+__pycache__/
+*.pyc
+
+# Arquivo temporário do build_cursors.py
+Cursors/Windows-Classic/build/tools/raw

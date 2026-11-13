@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=My Documents
+Name[pt_BR]=Meus documentos
+Icon=folder-documents
+Exec=@LIBDIR@/windows-classic-open-folder DOCUMENTS
+Categories=X-WindowsClassic;
+OnlyShowIn=LXQt;

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Log Off...
+Name[pt_BR]=Fazer logoff...
+Icon=system-log-out
+Exec=lxqt-leave --logout
+Categories=X-WindowsClassic;
+OnlyShowIn=LXQt;

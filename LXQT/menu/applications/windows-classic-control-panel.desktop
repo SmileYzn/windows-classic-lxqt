@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Control Panel
+Name[pt_BR]=Painel de controle
+Icon=preferences-system
+Exec=lxqt-config
+Categories=X-WindowsClassic;
+OnlyShowIn=LXQt;

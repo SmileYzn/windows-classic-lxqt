@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=My Pictures
+Name[pt_BR]=Minhas imagens
+Icon=folder-pictures
+Exec=@LIBDIR@/windows-classic-open-folder PICTURES
+Categories=X-WindowsClassic;
+OnlyShowIn=LXQt;

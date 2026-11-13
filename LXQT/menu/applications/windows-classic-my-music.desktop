@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=My Music
+Name[pt_BR]=Minhas músicas
+Icon=folder-music
+Exec=@LIBDIR@/windows-classic-open-folder MUSIC
+Categories=X-WindowsClassic;
+OnlyShowIn=LXQt;

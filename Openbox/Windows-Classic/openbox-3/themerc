@@ -1,0 +1,205 @@
+# Windows Classic — tema Openbox
+#
+# Cores: esquema "Windows Classic" padrão do Windows XP SP3,
+#        lidas de I386/HIVEDEF.INF ([HKCU\Control Panel\Colors]).
+#
+#   ActiveTitle            10  36 106   #0a246a
+#   GradientActiveTitle   166 202 240   #a6caf0
+#   InactiveTitle         128 128 128   #808080
+#   GradientInactiveTitle 192 192 192   #c0c0c0
+#   TitleText             255 255 255   #ffffff
+#   InactiveTitleText     212 208 200   #d4d0c8
+#   ButtonFace / Menu     212 208 200   #d4d0c8
+#   ButtonShadow / Gray   128 128 128   #808080
+#   ButtonDkShadow         64  64  64   #404040
+#   Hilight                10  36 106   #0a246a
+#
+# Glifos dos botões: pixel art com as medidas do XP (../../build.sh).
+# Fonte do título: Noto Sans Bold 9 (veja o README).
+#
+# O tema funciona sozinho, sem compositor. O extra opcional
+# Extras/Picom desenha por cima o relevo 3D de 2 px da moldura e dos
+# botões; ele reconhece a sombra dos botões pela cor #817e7a, gerada
+# por ".bg.shadow: 101" sobre #d4d0c8 — não altere um sem o outro.
+
+# ---------------------------------------------------------------------
+# Geometria
+#   No XP a moldura tem 4 px (BorderWidth=1 + borda 3D) e a barra de
+#   título 18 px (CaptionHeight=-270 twips).
+# ---------------------------------------------------------------------
+border.width: 4
+padding.width: 2
+padding.height: 1
+window.handle.width: 0
+window.client.padding.width: 0
+window.client.padding.height: 0
+
+window.active.border.color: #d4d0c8
+window.inactive.border.color: #d4d0c8
+window.active.title.separator.color: #d4d0c8
+window.inactive.title.separator.color: #d4d0c8
+window.active.client.color: #d4d0c8
+window.inactive.client.color: #d4d0c8
+
+window.label.text.justify: left
+
+# ---------------------------------------------------------------------
+# Janela ativa
+# ---------------------------------------------------------------------
+window.active.title.bg: Flat Gradient Horizontal
+window.active.title.bg.color: #0a246a
+window.active.title.bg.colorTo: #a6caf0
+
+window.active.label.bg: ParentRelative
+window.active.label.text.color: #ffffff
+window.active.label.text.font: shadow=n
+
+window.active.handle.bg: Flat Solid
+window.active.handle.bg.color: #d4d0c8
+window.active.grip.bg: Flat Solid
+window.active.grip.bg.color: #d4d0c8
+
+window.active.button.unpressed.bg: Raised Solid Bevel1
+window.active.button.unpressed.bg.shadow: 101
+window.active.button.unpressed.bg.color: #d4d0c8
+window.active.button.unpressed.image.color: #000000
+
+window.active.button.hover.bg: Raised Solid Bevel1
+window.active.button.hover.bg.shadow: 101
+window.active.button.hover.bg.color: #d4d0c8
+window.active.button.hover.image.color: #000000
+
+window.active.button.pressed.bg: Sunken Solid Bevel1
+window.active.button.pressed.bg.shadow: 101
+window.active.button.pressed.bg.color: #d4d0c8
+window.active.button.pressed.image.color: #000000
+
+window.active.button.disabled.bg: Raised Solid Bevel1
+window.active.button.disabled.bg.shadow: 101
+window.active.button.disabled.bg.color: #d4d0c8
+window.active.button.disabled.image.color: #808080
+
+window.active.button.toggled.unpressed.bg: Raised Solid Bevel1
+window.active.button.toggled.unpressed.bg.shadow: 101
+window.active.button.toggled.unpressed.bg.color: #d4d0c8
+window.active.button.toggled.unpressed.image.color: #000000
+
+window.active.button.toggled.hover.bg: Raised Solid Bevel1
+window.active.button.toggled.hover.bg.shadow: 101
+window.active.button.toggled.hover.bg.color: #d4d0c8
+window.active.button.toggled.hover.image.color: #000000
+
+window.active.button.toggled.pressed.bg: Sunken Solid Bevel1
+window.active.button.toggled.pressed.bg.shadow: 101
+window.active.button.toggled.pressed.bg.color: #d4d0c8
+window.active.button.toggled.pressed.image.color: #000000
+
+# ---------------------------------------------------------------------
+# Janela inativa (no Classic os botões não mudam, só o título)
+# ---------------------------------------------------------------------
+window.inactive.title.bg: Flat Gradient Horizontal
+window.inactive.title.bg.color: #808080
+window.inactive.title.bg.colorTo: #c0c0c0
+
+window.inactive.label.bg: ParentRelative
+window.inactive.label.text.color: #d4d0c8
+window.inactive.label.text.font: shadow=n
+
+window.inactive.handle.bg: Flat Solid
+window.inactive.handle.bg.color: #d4d0c8
+window.inactive.grip.bg: Flat Solid
+window.inactive.grip.bg.color: #d4d0c8
+
+window.inactive.button.unpressed.bg: Raised Solid Bevel1
+window.inactive.button.unpressed.bg.shadow: 101
+window.inactive.button.unpressed.bg.color: #d4d0c8
+window.inactive.button.unpressed.image.color: #000000
+
+window.inactive.button.hover.bg: Raised Solid Bevel1
+window.inactive.button.hover.bg.shadow: 101
+window.inactive.button.hover.bg.color: #d4d0c8
+window.inactive.button.hover.image.color: #000000
+
+window.inactive.button.pressed.bg: Sunken Solid Bevel1
+window.inactive.button.pressed.bg.shadow: 101
+window.inactive.button.pressed.bg.color: #d4d0c8
+window.inactive.button.pressed.image.color: #000000
+
+window.inactive.button.disabled.bg: Raised Solid Bevel1
+window.inactive.button.disabled.bg.shadow: 101
+window.inactive.button.disabled.bg.color: #d4d0c8
+window.inactive.button.disabled.image.color: #808080
+
+window.inactive.button.toggled.unpressed.bg: Raised Solid Bevel1
+window.inactive.button.toggled.unpressed.bg.shadow: 101
+window.inactive.button.toggled.unpressed.bg.color: #d4d0c8
+window.inactive.button.toggled.unpressed.image.color: #000000
+
+window.inactive.button.toggled.hover.bg: Raised Solid Bevel1
+window.inactive.button.toggled.hover.bg.shadow: 101
+window.inactive.button.toggled.hover.bg.color: #d4d0c8
+window.inactive.button.toggled.hover.image.color: #000000
+
+window.inactive.button.toggled.pressed.bg: Sunken Solid Bevel1
+window.inactive.button.toggled.pressed.bg.shadow: 101
+window.inactive.button.toggled.pressed.bg.color: #d4d0c8
+window.inactive.button.toggled.pressed.image.color: #000000
+
+# ---------------------------------------------------------------------
+# Menus (menu do Openbox / botão direito na área de trabalho)
+# ---------------------------------------------------------------------
+menu.border.width: 1
+menu.border.color: #808080
+menu.overlap.x: -3
+menu.overlap.y: 0
+
+menu.title.bg: Flat Gradient Horizontal
+menu.title.bg.color: #0a246a
+menu.title.bg.colorTo: #a6caf0
+menu.title.text.color: #ffffff
+menu.title.text.justify: left
+menu.title.text.font: shadow=n
+
+menu.items.bg: Flat Solid
+menu.items.bg.color: #d4d0c8
+menu.items.text.color: #000000
+menu.items.disabled.text.color: #808080
+menu.items.font: shadow=n
+
+menu.items.active.bg: Flat Solid
+menu.items.active.bg.color: #0a246a
+menu.items.active.text.color: #ffffff
+menu.items.active.disabled.text.color: #808080
+
+menu.separator.color: #808080
+menu.separator.width: 1
+menu.separator.padding.width: 1
+menu.separator.padding.height: 3
+
+# ---------------------------------------------------------------------
+# OSD (Alt+Tab, troca de área de trabalho, redimensionar)
+# ---------------------------------------------------------------------
+osd.border.width: 1
+osd.border.color: #404040
+
+osd.bg: Raised Solid Bevel1
+osd.bg.color: #d4d0c8
+osd.label.bg: ParentRelative
+osd.label.text.color: #000000
+osd.label.text.font: shadow=n
+
+osd.hilight.bg: Flat Solid
+osd.hilight.bg.color: #0a246a
+osd.unhilight.bg: Flat Solid
+osd.unhilight.bg.color: #808080
+
+osd.button.unpressed.bg: Flat Solid
+osd.button.unpressed.bg.color: #d4d0c8
+osd.button.unpressed.text.color: #000000
+osd.button.pressed.bg: Flat Solid
+osd.button.pressed.bg.color: #0a246a
+osd.button.pressed.text.color: #ffffff
+osd.button.focused.bg: Flat Solid Border
+osd.button.focused.bg.color: #d4d0c8
+osd.button.focused.bg.border.color: #000000
+osd.button.focused.text.color: #000000

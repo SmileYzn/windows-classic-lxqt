@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=For Files or Folders...
+Name[pt_BR]=Arquivos ou pastas...
+Icon=system-search
+Exec=pcmanfm-qt --find-files
+Categories=X-WindowsClassic;
+OnlyShowIn=LXQt;
