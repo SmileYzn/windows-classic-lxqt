@@ -1,0 +1,10 @@
+singleton Style 1.0 Style.qml
+Balloon 1.0 Balloon.qml
+Bevel 1.0 Bevel.qml
+ClassicWindow 1.0 ClassicWindow.qml
+ComboBox 1.0 ComboBox.qml
+DropArrow 1.0 DropArrow.qml
+FocusRect 1.0 FocusRect.qml
+Label 1.0 Label.qml
+LineEdit 1.0 LineEdit.qml
+PushButton 1.0 PushButton.qml

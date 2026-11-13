@@ -1,6 +1,6 @@
 # Windows Classic para LXQt
 
-Tema completo para o **LXQt** que reproduz o tema **Clássico do Windows XP**: janelas, barra de tarefas, menu Iniciar, cursores, papéis de parede e sons.
+Tema completo para o **LXQt** que reproduz o tema **Clássico do Windows XP**: janelas, barra de tarefas, menu Iniciar, cursores, papéis de parede, sons e tela de logon.
 
 ![Barra de tarefas](LXQT/Windows-Classic/preview.png)
 
@@ -17,7 +17,7 @@ Os recursos (cores, medidas, imagens, cursores e sons) foram tirados da mídia d
 | [`Sounds`](Sounds) | Os 35 sons `.wav` do XP (só os arquivos: o LXQt não tem sons de evento) | ✅ |
 | [`LXQT`](LXQT) | Painel, botão e menu Iniciar do XP, Executar, notificações e paleta de cores | ✅ |
 | [`Extras/Picom`](Extras/Picom) | Opcional: relevo 3D de 2 px nas janelas e sombra dos menus, via picom | ✅ |
-| `SDDM` | Tela de login | 🚧 em andamento |
+| [`SDDM`](SDDM) | Tela de logon clássica do XP ("Fazer logon no Windows") | ✅ |
 | `Icons` | Tema de ícones | 🚧 em andamento |
 
 ## Instalação
@@ -36,6 +36,7 @@ sudo Fonts/install.sh
 sudo Openbox/install.sh
 sudo Cursors/install.sh
 sudo LXQT/install.sh
+sudo SDDM/install.sh --enable   # tela de logon (vale no próximo boot)
 ```
 
 Ativação no seu usuário (cada script faz backup do que altera):
@@ -61,6 +62,7 @@ Com a pasta `I386` da mídia do Windows XP:
 Openbox/build.sh                        # glifos dos botões (pixel art, não usa a ISO)
 Cursors/build.sh /caminho/para/I386
 LXQT/build.sh    /caminho/para/I386
+SDDM/build.sh    /caminho/para/I386
 ```
 
 ## Referências

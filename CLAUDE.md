@@ -18,7 +18,8 @@ Fontes de informação que já usamos na `I386`:
 - `LAYOUT.INF`: nomes longos dos arquivos (ex.: `XPDING.WA_` → "Windows XP Ding.wav");
 - `SHL_IMG.IN_` e `ACCESSOR.IN_`: nomes dos papéis de parede;
 - `EXPLORER.EX_`: bandeira do botão Iniciar (bitmap 176) e faixa "Windows XP Professional" (bitmap 167);
-- `USER32.DL_` e `OLE32.DL_`: cursores.
+- `USER32.DL_` e `OLE32.DL_`: cursores; `USER32.DL_` também tem os ícones de mensagem (101 aviso, 103 erro, 104 informação);
+- `MSGINA.DL_`: tela de logon (bitmaps 101/107 faixas, 103 barra; diálogos 1500 logon, 2200 desligar, 2507 falha).
 Arquivos `*.XX_` são CAB: extrair com `cabextract`. Recursos de `.exe`/`.dll`: `7z x arquivo '.rsrc/...'`.
 
 # Componentes
@@ -47,7 +48,8 @@ Os passos do projeto serão do 1 ao 8.
 
 ## Estado atual
 - Passos 1 a 6 prontos e publicados no GitHub, mais `Extras/Picom`.
-- **Próximo: passo 7 (SDDM)**, depois o passo 8 (Icons).
+- Passo 7 (SDDM) pronto: tema QML próprio (Qt 6, SDDM 0.21), sem QtQuick.Controls.
+- **Próximo: passo 8 (Icons).**
 - Cada pasta tem um `README.md` com a origem de cada recurso e as limitações. Leia o da pasta antes de mexer nela.
 
 ## Decisões já tomadas
@@ -56,6 +58,7 @@ Os passos do projeto serão do 1 ao 8.
 - Cursores: base do projeto win2k (os cursores do XP são idênticos aos do Windows 2000).
 - LXQt: o menu do XP é o `mainmenu` (menu em cascata), com o arquivo `LXQT/menu/windows-classic-applications.menu`. O `fancymenu` só recebe o botão Iniciar igual.
 - Botão Iniciar: 59x22 px, medido num print do XP.
+- SDDM: reproduz o logon clássico (diálogo 1500 do msgina), não a tela de boas-vindas do Luna. "Fazer logon em:" (Opções >>) escolhe a sessão. Fundo `#3A6EA5`.
 - Sombra dos menus (picom): `shadow-radius 4`, `offset -2,-2`, `opacity 0.5`, medida num print do XP.
 
 # Como trabalhar
@@ -76,6 +79,8 @@ Os passos do projeto serão do 1 ao 8.
 - **lxqt-config-appearance** reescreve `~/.config/gtk-3.0/settings.ini`; configurações GTK do tema devem ir para os arquivos do sistema (`/etc/xdg/gtk-3.0/settings.ini`).
 - **Openbox**: no LXQt atual o Openbox lê `~/.config/openbox/rc.xml` (não `lxqt-rc.xml`). Bordas são de uma cor só; o relevo 3D de 2 px só existe com o extra do picom.
 - **picom**: o shader do extra reconhece a sombra dos botões pela cor `#817E7A`, gerada por `.bg.shadow: 101` no `themerc`. Não mude um sem o outro. Regras usam `_NET_FRAME_EXTENTS@` (o `@` lê a janela do aplicativo).
+- **SDDM**: com um `qmldir` na pasta do tema, só os tipos listados nele ficam visíveis; todo componente novo precisa entrar no `qmldir`. Não dê a uma função QML o nome de uma função global do JS (ex.: `escape`): o tipo deixa de carregar. Teste com `sddm-greeter-qt6 --test-mode --theme <pasta>` no Xvfb; os erros aparecem em vermelho na tela do tema padrão (use uma tela alta para ler tudo).
+- **SDDM**: os bitmaps do msgina têm 413 px, mas só 411 são válidos (274 DLU).
 - **picom em VM**: sem aceleração 3D, o backend `glx` deixa de redesenhar janelas. No Xvfb isso também acontece (llvmpipe); lá, use os testes só para a primeira pintura.
 
 # GitHub
@@ -97,5 +102,5 @@ Já usadas no projeto:
 
 ```bash
 sudo pacman -S --needed cabextract 7zip icoutils imagemagick xorg-xcursorgen git github-cli \
-    xorg-server-xvfb xorg-xwd xterm xdotool noto-fonts libcanberra picom
+    xorg-server-xvfb xorg-xwd xterm xdotool noto-fonts libcanberra picom sddm
 ```
