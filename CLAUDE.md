@@ -50,10 +50,12 @@ Fora da numeração: `GTK` (temas GTK 3 e GTK 4/libadwaita) e `Extras/Picom`.
 Os passos do projeto serão do 1 ao 7.
 
 ## Estado atual
-- Passos 1 a 6 prontos e publicados no GitHub, mais `Extras/Picom`.
-- Passo 7 (SDDM) pronto: tema QML próprio (Qt 6, SDDM 0.21), sem QtQuick.Controls.
+- **Os 7 passos estão prontos e publicados no GitHub**, mais `GTK` e `Extras/Picom`.
+- Passo 7 (SDDM): tema QML próprio (Qt 6, SDDM 0.21), sem QtQuick.Controls. O `install.sh --enable` também liga o `SDDM/windows-classic-xsetup` (`[X11] DisplayCommand`), que aplica na tela de logon a resolução salva no LXQt e o cursor do fundo. Aguardando o teste do usuário depois de um boot.
 - GTK 3 e GTK 4 prontos (`GTK/windows-classic/gtk-3.0` e `gtk-4.0`).
+- `instalar.sh` (raiz) instala tudo no sistema com `sudo`, ativa no usuário e reinicia o painel. Opções: `--picom`, `--sem-sddm`, `--sem-painel`, `--simular` (só mostra os comandos). Ao criar um componente novo, acrescente-o ali e no README principal.
 - Cada pasta tem um `README.md` com a origem de cada recurso e as limitações. Leia o da pasta antes de mexer nela.
+- Próximos passos: nenhum pendente. Ajustes vêm dos testes do usuário na máquina dele (VM VirtualBox com Arch, LXQt 2.5, Openbox, SDDM em X11).
 
 ## Decisões já tomadas
 - **Nome de todos os pacotes do tema: `windows-classic`, sem espaços.** Vale para pastas instaladas (`themes/`, `icons/`, `sddm/themes/`, `lxqt/themes/`, `lxqt/palettes/`, `wallpapers/`, `/usr/share/windows-classic`) e para o `Name=` dos `index.theme`/`metadata.desktop`. Arquivos de configuração e entradas de menu seguem em minúsculas (`60-windows-classic.conf`, `windows-classic.glsl`, `windows-classic-*.desktop`).
@@ -103,6 +105,9 @@ Os passos do projeto serão do 1 ao 7.
 
 Repositório: https://github.com/smileyzn/windows-classic-lxqt (branch `main`).
 Cada passo concluído entra como um novo commit. Commit e push só quando o usuário pedir.
+- Autor dos commits: a identidade global do git do usuário (`smileyzn`).
+- O envio às vezes falha com HTTP 408 ou "remote end hung up" (oscilação do GitHub, não tamanho): tente de novo algumas vezes.
+- O usuário trabalha em mais de uma máquina: antes de mexer, rode `git fetch` e confira se o `origin/main` está à frente.
 
 # Referências
 Há um tema com um resultado semelhante em:
