@@ -9,7 +9,7 @@
 # Requer: imagemagick
 set -euo pipefail
 
-OUT="$(cd "$(dirname "$0")" && pwd)/Windows-Classic/openbox-3"
+OUT="$(cd "$(dirname "$0")" && pwd)/windows-classic/openbox-3"
 mkdir -p "$OUT"
 
 # xbm <arquivo> <largura> <altura> <linhas...>   ("#" = pixel aceso)

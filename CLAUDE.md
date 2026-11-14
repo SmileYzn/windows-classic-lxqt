@@ -28,7 +28,7 @@ Arquivos `*.XX_` são CAB: extrair com `cabextract`. Recursos de `.exe`/`.dll`: 
 - Um tema de cursores;
 - Um tema de janelas para o openbox;
 - Um tema para o ambiente LXQT;
-- Um pacote de ícones a definir se será um fork do github;
+- Sem pacote de ícones próprio, por decisão do usuário (muito custoso para manter por agora): o tema usa qualquer tema de ícones instalado e nenhum componente depende de ícones;
 - Os sons do Windows XP: o LXQT não tem suporte nativo, então a pasta Sounds guarda só os arquivos .wav (sem tema nem instalação);
 - As fontes do tema: Noto Sans do próprio Linux. Não usamos as fontes da Microsoft (nem Tahoma, MS Sans Serif ou Marlett);
 - Um tema GTK (`GTK/`), derivado do GTK 3 e do GTK 4 do win2k com as cores do XP Clássico. Sem GTK 2 (o `gtk2` saiu dos repositórios do Arch; decisão do usuário);
@@ -44,26 +44,26 @@ As pastas no projeto:
 5. Sounds -> Arquivos de som do Windows XP (só os .wav)
 6. LXQT -> Tema do LXQT
 7. SDDM -> Tema para o SDDM Login Manager
-8. Icons -> Tema de ícones
 
 Fora da numeração: `GTK` (temas GTK 3 e GTK 4/libadwaita) e `Extras/Picom`.
 
-Os passos do projeto serão do 1 ao 8.
+Os passos do projeto serão do 1 ao 7.
 
 ## Estado atual
 - Passos 1 a 6 prontos e publicados no GitHub, mais `Extras/Picom`.
 - Passo 7 (SDDM) pronto: tema QML próprio (Qt 6, SDDM 0.21), sem QtQuick.Controls.
-- GTK 3 e GTK 4 prontos (`GTK/Windows-Classic/gtk-3.0` e `gtk-4.0`). **Próximo: passo 8 (Icons).**
+- GTK 3 e GTK 4 prontos (`GTK/windows-classic/gtk-3.0` e `gtk-4.0`).
 - Cada pasta tem um `README.md` com a origem de cada recurso e as limitações. Leia o da pasta antes de mexer nela.
 
 ## Decisões já tomadas
+- **Nome de todos os pacotes do tema: `windows-classic`, sem espaços.** Vale para pastas instaladas (`themes/`, `icons/`, `sddm/themes/`, `lxqt/themes/`, `lxqt/palettes/`, `wallpapers/`, `/usr/share/windows-classic`) e para o `Name=` dos `index.theme`/`metadata.desktop`. Arquivos de configuração e entradas de menu seguem em minúsculas (`60-windows-classic.conf`, `windows-classic.glsl`, `windows-classic-*.desktop`). Os instaladores apagam as instalações antigas com o nome `Windows-Classic` (maiúsculo).
 - Wallpapers, sons, cursores e imagens do menu Iniciar ficam no repositório (decisão do usuário), com o aviso de marcas da Microsoft no README principal.
 - Openbox: título em Noto Sans Bold 9 + `padding.height: 1`, para a barra ter 18 px e os botões 14 px, como no XP. Glifos dos botões em pixel art no `Openbox/build.sh` (não usa a Marlett).
 - Cursores: base do projeto win2k (os cursores do XP são idênticos aos do Windows 2000).
 - LXQt: o menu do XP é o `mainmenu` (menu em cascata), com o arquivo `LXQT/menu/windows-classic-applications.menu`. O `fancymenu` só recebe o botão Iniciar igual.
 - Botão Iniciar: 59x22 px, medido num print do XP.
 - SDDM: reproduz o logon clássico (diálogo 1500 do msgina), não a tela de boas-vindas do Luna. "Fazer logon em:" (Opções >>) escolhe a sessão. Fundo `#3A6EA5`.
-- GTK: mesmas cores da paleta Qt. ButtonDkShadow `#404040` (`@border_dark`), WindowFrame `#000000` (`@window_frame`, moldura do botão padrão e foco). A calha da barra de rolagem é xadrez branco/`#D4D0C8`. O tema fica em `themes/Windows-Classic`, junto do `openbox-3`: o `install.sh` de cada um só troca as próprias subpastas.
+- GTK: mesmas cores da paleta Qt. ButtonDkShadow `#404040` (`@border_dark`), WindowFrame `#000000` (`@window_frame`, moldura do botão padrão e foco). A calha da barra de rolagem é xadrez branco/`#D4D0C8`. O tema fica em `themes/windows-classic`, junto do `openbox-3`: o `install.sh` de cada um só troca as próprias subpastas.
 - Sombra dos menus (picom): `shadow-radius 4`, `offset -2,-2`, `opacity 0.5`, medida num print do XP. Só em menus opacos (`!argb`): Firefox/Chromium/Electron desenham a própria sombra numa margem transparente.
 - GTK 4: barra de título CSD de 18 px com botões 16x14 e os glifos do Openbox (`titlebutton-*.png`). Apps libadwaita só pegam o tema pelo `@import` em `~/.config/gtk-4.0/gtk.css` (`GTK/install.sh --apply`).
 - **Licenças: o usuário não vai definir nenhuma até o fim do projeto.** Não adicione arquivos `LICENSE` nem seções de licença nos READMEs; os créditos de origem (win2k, Chicago95) ficam.

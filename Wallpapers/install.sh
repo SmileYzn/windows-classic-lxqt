@@ -9,6 +9,7 @@ if [ "$(id -u)" -eq 0 ]; then
 else
     DEST="${XDG_DATA_HOME:-$HOME/.local/share}/wallpapers/windows-classic"
 fi
+rm -rf "$(dirname "$DEST")/Windows-Classic"   # nome antigo (maiúsculo)
 mkdir -p "$DEST/Tiles"
 install -m644 ./*.jpg ./*.png "$DEST/"
 install -m644 Tiles/*.png "$DEST/Tiles/"

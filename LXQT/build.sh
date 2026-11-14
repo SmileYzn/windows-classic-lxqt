@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Gera as imagens do tema LXQt "Windows-Classic".
+# Gera as imagens do tema LXQt "windows-classic".
 #
 #  - Da mídia do Windows XP (I386/EXPLORER.EX_, recursos BITMAP):
 #      start.png   bandeira do botão Iniciar (bitmap 176, 16x16 com alfa)
@@ -14,7 +14,7 @@
 set -euo pipefail
 
 I386="${1:?Uso: $0 /caminho/para/I386}"
-OUT="$(cd "$(dirname "$0")" && pwd)/Windows-Classic/images"
+OUT="$(cd "$(dirname "$0")" && pwd)/windows-classic/images"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 mkdir -p "$OUT"

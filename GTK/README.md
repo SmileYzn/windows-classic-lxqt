@@ -1,6 +1,6 @@
 # GTK: Windows Classic
 
-Tema GTK que reproduz o **Clássico do Windows XP** nos aplicativos GTK, com as mesmas cores do estilo Qt "Windows" e da paleta `Windows-Classic` do LXQt. Assim, apps GTK (Firefox, GIMP, Thunar, Mousepad...) e apps Qt ficam iguais na mesma sessão.
+Tema GTK que reproduz o **Clássico do Windows XP** nos aplicativos GTK, com as mesmas cores do estilo Qt "Windows" e da paleta `windows-classic` do LXQt. Assim, apps GTK (Firefox, GIMP, Thunar, Mousepad...) e apps Qt ficam iguais na mesma sessão.
 
 | GTK 3 | GTK 4 / libadwaita |
 |---|---|
@@ -8,12 +8,12 @@ Tema GTK que reproduz o **Clássico do Windows XP** nos aplicativos GTK, com as 
 
 | Versão | Pasta | Situação |
 |---|---|---|
-| GTK 3 | `Windows-Classic/gtk-3.0` (+ links `gtk-3.22` e `gtk-3.24`) | ✅ |
-| GTK 4 e libadwaita | `Windows-Classic/gtk-4.0` | ✅ |
+| GTK 3 | `windows-classic/gtk-3.0` (+ links `gtk-3.22` e `gtk-3.24`) | ✅ |
+| GTK 4 e libadwaita | `windows-classic/gtk-4.0` | ✅ |
 
 Não há tema GTK 2: o `gtk2` saiu dos repositórios oficiais do Arch, e nenhum app instalado pelos repositórios usa mais essa versão.
 
-O tema é instalado na mesma pasta do tema do Openbox (`themes/Windows-Classic`): um só nome de tema para as janelas e para os widgets.
+O tema é instalado na mesma pasta do tema do Openbox (`themes/windows-classic`): um só nome de tema para as janelas e para os widgets.
 
 ## Origem
 
@@ -49,7 +49,7 @@ As outras cores do esquema Clássico (face `#D4D0C8`, seleção `#0A246A`, títu
 ## Instalação
 
 ```bash
-sudo ./install.sh              # instala em /usr/share/themes/Windows-Classic
+sudo ./install.sh              # instala em /usr/share/themes/windows-classic
 ```
 
 Depois, ative no seu usuário:
@@ -58,7 +58,7 @@ Depois, ative no seu usuário:
 ./install.sh --apply
 ```
 
-- **GTK 3 e GTK 4:** grava `gtk-theme-name=Windows-Classic` em `~/.config/gtk-3.0/settings.ini` e em `~/.config/gtk-4.0/settings.ini`.
+- **GTK 3 e GTK 4:** grava `gtk-theme-name=windows-classic` em `~/.config/gtk-3.0/settings.ini` e em `~/.config/gtk-4.0/settings.ini`.
 - **libadwaita:** os apps libadwaita ignoram o `gtk-theme-name` e só leem `~/.config/gtk-4.0/gtk.css`. Por isso o script põe nesse arquivo uma linha marcada (`/* windows-classic-lxqt: tema GTK 4 */`) com um `@import` do `gtk.css` do tema. O resto do arquivo fica como está.
 - **Backup:** tudo é feito com backup (`*.bak.AAAAMMDDhhmmss`). Para desfazer no libadwaita, apague essa linha.
 
@@ -75,8 +75,8 @@ Apps já abertos continuam com o tema antigo até serem reabertos (ou até o `xs
 Para testar sem mexer no sistema, instale só no seu usuário (`./install.sh`, em `~/.local/share/themes`) e abra um app forçando o tema:
 
 ```bash
-GTK_THEME=Windows-Classic gtk3-widget-factory   # pacote gtk3-demos
-GTK_THEME=Windows-Classic gtk4-widget-factory   # pacote gtk4-demos
+GTK_THEME=windows-classic gtk3-widget-factory   # pacote gtk3-demos
+GTK_THEME=windows-classic gtk4-widget-factory   # pacote gtk4-demos
 ```
 
 ## Limitações conhecidas

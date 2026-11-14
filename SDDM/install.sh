@@ -4,7 +4,7 @@
 # Uso:
 #   sudo ./install.sh            instala em /usr/share/sddm/themes
 #   sudo ./install.sh --enable   instala e ativa: cria /etc/sddm.conf.d/windows-classic.conf
-#                                (tema e cursor Windows-Classic); vale no próximo boot
+#                                (tema e cursor windows-classic); vale no próximo boot
 #                                ou após "sudo systemctl restart sddm"
 #   ./install.sh                 instala em ~/.local/share/sddm/themes, só para testar
 #                                com o sddm-greeter-qt6 --test-mode (o SDDM não lê de lá)
@@ -14,7 +14,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 THEME=windows-classic
-CURSORS=Windows-Classic
+CURSORS=windows-classic
 ENABLE=0
 SYSTEM=0
 [ "$(id -u)" -eq 0 ] && SYSTEM=1
@@ -34,7 +34,7 @@ else
     DEST="${XDG_DATA_HOME:-$HOME/.local/share}/sddm/themes/$THEME"
 fi
 
-rm -rf "$DEST"
+rm -rf "$DEST" "$(dirname "$DEST")/Windows-Classic"   # nome antigo (maiúsculo)
 mkdir -p "$DEST/images"
 install -m644 "$THEME"/*.qml "$THEME"/qmldir "$THEME"/metadata.desktop \
     "$THEME"/theme.conf "$THEME"/preview.png "$DEST/"
@@ -52,6 +52,7 @@ fi
 
 CONF_DIR="$ROOT/etc/sddm.conf.d"
 CONF="$CONF_DIR/windows-classic.conf"
+rm -f "$CONF_DIR/Windows-Classic.conf"   # nome antigo (maiúsculo)
 mkdir -p "$CONF_DIR"
 if [ -e "$CONF" ]; then
     cp -a "$CONF" "$CONF.bak.$(date +%Y%m%d%H%M%S)"

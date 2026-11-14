@@ -2,7 +2,7 @@
 
 Tema completo para o **LXQt** que reproduz o tema **Clássico do Windows XP**: janelas, barra de tarefas, menu Iniciar, cursores, papéis de parede, sons e tela de logon.
 
-![Barra de tarefas](LXQT/Windows-Classic/preview.png)
+![Barra de tarefas](LXQT/windows-classic/preview.png)
 
 Os recursos (cores, medidas, imagens, cursores e sons) foram tirados da mídia de instalação do **Windows XP Professional SP3**, quase sempre dos arquivos `.INF` e das DLLs da pasta `I386`. Cada componente tem um `build.sh` para gerar tudo de novo a partir da sua própria ISO. A fonte é a **Noto Sans**; nenhuma fonte da Microsoft é usada.
 
@@ -19,7 +19,6 @@ Os recursos (cores, medidas, imagens, cursores e sons) foram tirados da mídia d
 | [`LXQT`](LXQT) | Painel, botão e menu Iniciar do XP, Executar, notificações e paleta de cores | ✅ |
 | [`Extras/Picom`](Extras/Picom) | Opcional: relevo 3D de 2 px nas janelas e sombra dos menus, via picom | ✅ |
 | [`SDDM`](SDDM) | Tela de logon clássica do XP ("Fazer logon no Windows") | ✅ |
-| `Icons` | Tema de ícones | 🚧 em andamento |
 
 ## Instalação
 
@@ -29,7 +28,16 @@ Requisitos no Arch Linux:
 sudo pacman -S --needed lxqt openbox noto-fonts
 ```
 
-Instalação no sistema, componente por componente:
+Tudo de uma vez (instala no sistema, ativa no seu usuário e reinicia o painel):
+
+```bash
+./instalar.sh              # rode sem sudo; a senha é pedida uma vez
+./instalar.sh --picom      # idem, com o extra do picom
+./instalar.sh --simular    # só mostra os comandos
+./instalar.sh --help       # outras opções (--sem-sddm, --sem-painel)
+```
+
+Ou, componente por componente, no sistema:
 
 ```bash
 sudo Wallpapers/install.sh
@@ -53,7 +61,7 @@ pkill -x lxqt-panel            # a sessão reabre o painel
 Extras/Picom/install.sh        # opcional, requer picom e aceleração 3D
 ```
 
-Também dá para ativar à mão em **Configurações do LXQt → Aparência**: tema "Windows-Classic", estilo dos widgets "Windows", paleta "Windows-Classic", estilo GTK 3 "Windows-Classic" e tema do Openbox "Windows-Classic". Os apps GTK 4/libadwaita só pegam o tema pelo `GTK/install.sh --apply`.
+Também dá para ativar à mão em **Configurações do LXQt → Aparência**: tema "windows-classic", estilo dos widgets "Windows", paleta "windows-classic", estilo GTK 3 "windows-classic" e tema do Openbox "windows-classic". Os apps GTK 4/libadwaita só pegam o tema pelo `GTK/install.sh --apply`.
 
 Cada pasta tem um `README.md` com os detalhes, a origem de cada recurso e as limitações conhecidas.
 

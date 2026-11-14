@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Instala o tema Openbox "Windows-Classic".
+# Instala o tema Openbox "windows-classic".
 #
 # Uso:
 #   ./install.sh            instala em ~/.local/share/themes
@@ -19,10 +19,13 @@ else
     DEST="${XDG_DATA_HOME:-$HOME/.local/share}/themes"
 fi
 mkdir -p "$DEST"
+rm -rf "$DEST/windows-classic/openbox-3"
+# Nome antigo (maiúsculo): tira só o openbox-3; a pasta some quando o GTK também sair
 rm -rf "$DEST/Windows-Classic/openbox-3"
-mkdir -p "$DEST/Windows-Classic"
-cp -r Windows-Classic/openbox-3 "$DEST/Windows-Classic/"
-echo "Tema instalado em: $DEST/Windows-Classic"
+rmdir "$DEST/Windows-Classic" 2>/dev/null || true
+mkdir -p "$DEST/windows-classic"
+cp -r windows-classic/openbox-3 "$DEST/windows-classic/"
+echo "Tema instalado em: $DEST/windows-classic"
 
 [ "$APPLY" -eq 1 ] || exit 0
 
@@ -55,7 +58,7 @@ def child(parent, tag):
         el = ET.SubElement(parent, q(tag))
     return el
 
-child(theme, "name").text = "Windows-Classic"
+child(theme, "name").text = "windows-classic"
 # Ícone, título, minimizar, maximizar, fechar — igual ao Windows
 child(theme, "titleLayout").text = "NLIMC"
 

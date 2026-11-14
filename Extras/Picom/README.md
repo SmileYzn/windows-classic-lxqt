@@ -1,6 +1,6 @@
 # Extra: Picom — relevo 3D e sombras de menu do Windows Classic
 
-**Opcional.** O tema Openbox `Windows-Classic` funciona sozinho, sem compositor. Este extra usa um shader do [picom](https://github.com/yshui/picom) para desenhar o que o Openbox não consegue: o relevo 3D de 2 px do Windows.
+**Opcional.** O tema Openbox `windows-classic` funciona sozinho, sem compositor. Este extra usa um shader do [picom](https://github.com/yshui/picom) para desenhar o que o Openbox não consegue: o relevo 3D de 2 px do Windows.
 
 | | Só Openbox | Openbox + este extra |
 |---|---|---|
@@ -13,7 +13,7 @@
 
 - picom 12 ou mais novo, com backend `glx` (OpenGL)
 - **aceleração 3D**: no VirtualBox, ative *Configurações → Tela → Habilitar Aceleração 3D*. Sem ela, o picom com `glx` deixa de redesenhar partes das janelas (por exemplo, o título não fica cinza ao perder o foco).
-- tema Openbox `Windows-Classic` ativo
+- tema Openbox `windows-classic` ativo
 
 ## Instalação
 

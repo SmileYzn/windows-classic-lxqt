@@ -8,7 +8,7 @@
 #   regras antigas pelas novas.
 #
 # Uso: ./install.sh [caminho/do/picom.conf]
-# Requer: picom >= 12, o tema Openbox Windows-Classic e aceleração 3D.
+# Requer: picom >= 12, o tema Openbox windows-classic e aceleração 3D.
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -158,7 +158,7 @@ if rules:
         text = text[:a] + text[b:]
         close -= b - a
     # comentários soltos de uma instalação manual antiga
-    region = re.sub(r"(?m)^[ \t]*#(-+ Windows Classic -+|[^\n]*Windows-Classic: borda|[^\n]*Relevo 3D da moldura)[^\n]*\n",
+    region = re.sub(r"(?m)^[ \t]*#(-+ Windows Classic -+|[^\n]*windows-classic: borda|[^\n]*Relevo 3D da moldura)[^\n]*\n",
                     "", text[start:close])
     text = text[:start] + region + text[close:]
 

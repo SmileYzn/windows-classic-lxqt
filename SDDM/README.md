@@ -47,7 +47,7 @@ sudo ../Cursors/install.sh       # opcional: cursor do XP também na tela de log
 sudo ./install.sh --enable       # instala e ativa
 ```
 
-O `--enable` cria `/etc/sddm.conf.d/windows-classic.conf` com `Current=windows-classic` e, se os cursores estiverem instalados, `CursorTheme=Windows-Classic`. Se o arquivo já existir, ele faz backup antes. A mudança vale no próximo boot ou após `sudo systemctl restart sddm`, que **encerra a sessão gráfica**.
+O `--enable` cria `/etc/sddm.conf.d/windows-classic.conf` com `Current=windows-classic` e, se os cursores estiverem instalados, `CursorTheme=windows-classic`. Se o arquivo já existir, ele faz backup antes. A mudança vale no próximo boot ou após `sudo systemctl restart sddm`, que **encerra a sessão gráfica**.
 
 Sem o `--enable`, o script só copia o tema para `/usr/share/sddm/themes/windows-classic`.
 

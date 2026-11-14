@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Instala o tema LXQt "Windows-Classic" e a paleta de cores.
+# Instala o tema LXQt "windows-classic" e a paleta de cores.
 #
 # Uso:
 #   sudo ./install.sh     sistema: /usr/share/lxqt/{themes,palettes},
@@ -12,7 +12,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-THEME=Windows-Classic
+THEME=windows-classic
 if [ "$(id -u)" -eq 0 ] || [ "${1:-}" = "--system" ]; then
     BASE="${DESTDIR:-}/usr/share/lxqt"
     MENUS="${DESTDIR:-}/etc/xdg/menus"
@@ -26,11 +26,12 @@ DSHARE="${DESTDIR:-}$SHARE"
 
 mkdir -p "$BASE/themes" "$BASE/palettes"
 rm -rf "${BASE:?}/themes/$THEME"
+rm -rf "$BASE/themes/Windows-Classic" "$BASE/palettes/Windows-Classic"   # nome antigo (maiúsculo)
 cp -r "$THEME" "$BASE/themes/"
 install -m644 "palettes/$THEME" "$BASE/palettes/$THEME"
 
 # Menu Iniciar no formato do XP
-rm -rf "$DSHARE"
+rm -rf "$DSHARE" "$(dirname "$DSHARE")/Windows-Classic"   # nome antigo (maiúsculo)
 mkdir -p "$DSHARE/applications" "$DSHARE/desktop-directories" "$MENUS"
 install -m755 menu/windows-classic-open-folder "$DSHARE/"
 for f in menu/applications/*.desktop; do

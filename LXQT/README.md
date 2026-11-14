@@ -2,18 +2,18 @@
 
 Tema do LXQt (painel, menu Iniciar, Executar e notificações) e paleta de cores no padrão **Clássico do Windows XP**. Foi feito para o estilo Qt **Windows**, que já vem no LXQt e desenha botões, menus e os botões das tarefas no padrão Clássico.
 
-![Barra de tarefas](Windows-Classic/preview.png)
+![Barra de tarefas](windows-classic/preview.png)
 
 ## Conteúdo
 
 | Arquivo | O que faz |
 |---|---|
-| `Windows-Classic/lxqt-panel.qss` | Barra de tarefas com relevo, botão **Iniciar**, menu Iniciar com a faixa lateral, bandeja afundada com o relógio e dicas amarelas |
-| `Windows-Classic/lxqt-runner.qss` | Executar (Alt+F2) com moldura e botão de fechar do Classic |
-| `Windows-Classic/lxqt-notificationd.qss` | Notificações no estilo do balão do XP |
-| `Windows-Classic/wallpaper.cfg` | Fundo sólido `#3A6EA5` (de `../Wallpapers`) |
-| `Windows-Classic/images/` | Imagens geradas por `build.sh` |
-| `palettes/Windows-Classic` | Paleta de cores do esquema Clássico |
+| `windows-classic/lxqt-panel.qss` | Barra de tarefas com relevo, botão **Iniciar**, menu Iniciar com a faixa lateral, bandeja afundada com o relógio e dicas amarelas |
+| `windows-classic/lxqt-runner.qss` | Executar (Alt+F2) com moldura e botão de fechar do Classic |
+| `windows-classic/lxqt-notificationd.qss` | Notificações no estilo do balão do XP |
+| `windows-classic/wallpaper.cfg` | Fundo sólido `#3A6EA5` (de `../Wallpapers`) |
+| `windows-classic/images/` | Imagens geradas por `build.sh` |
+| `palettes/windows-classic` | Paleta de cores do esquema Clássico |
 | `menu/` | Menu Iniciar no formato do XP (arquivo `.menu`, entradas e pastas) |
 
 ## De onde vem cada recurso
@@ -55,7 +55,7 @@ sudo ./install.sh        # /usr/share/lxqt/themes e /usr/share/lxqt/palettes
 
 O `apply.sh` faz backup de `~/.config/lxqt/lxqt.conf` e `panel.conf`. Com `--panel`, o painel fica assim: **Iniciar** (menu clássico `mainmenu`, com o menu do XP e sem o campo de busca), Inicialização rápida (mantém os seus atalhos), tarefas com até 160 px e bandeja (ícones, volume e relógio), com 28 px de altura. O texto do botão segue o idioma ("Iniciar" em português).
 
-Também dá para fazer tudo à mão em **Configurações do LXQt → Aparência**: tema do LXQt "Windows-Classic", estilo dos widgets "Windows" e paleta "Windows-Classic".
+Também dá para fazer tudo à mão em **Configurações do LXQt → Aparência**: tema do LXQt "windows-classic", estilo dos widgets "Windows" e paleta "windows-classic".
 
 ## Observações
 

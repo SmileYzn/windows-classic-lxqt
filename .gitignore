@@ -6,4 +6,4 @@ __pycache__/
 *.pyc
 
 # Arquivo temporário do build_cursors.py
-Cursors/Windows-Classic/build/tools/raw
+Cursors/windows-classic/build/tools/raw

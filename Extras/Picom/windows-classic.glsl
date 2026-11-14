@@ -1,6 +1,6 @@
 #version 330
 // Windows Classic — shader do picom (extra opcional) para o tema
-// Openbox Windows-Classic.
+// Openbox windows-classic.
 //
 // O Openbox desenha bordas de uma cor só e relevos de 1 px. Este shader
 // redesenha, sobre a janela já composta, o relevo 3D do tema Clássico:

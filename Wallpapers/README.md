@@ -6,7 +6,7 @@ Planos de fundo originais do Windows XP SP3, extraídos da pasta `I386` da mídi
 |---|---|---|
 | `*.jpg` | 20 wallpapers (800x600), incluindo **Bliss** | `C:\WINDOWS\Web\Wallpaper` (`SHL_IMG.INF`) |
 | `Tiles/*.png` | 11 texturas em mosaico (convertidas de BMP) | `C:\WINDOWS\*.bmp` (`ACCESSOR.INF`) |
-| `Windows Classic.png` | Cor sólida `#3A6EA5` | Cor padrão da área de trabalho no tema Clássico |
+| `windows-classic.png` | Cor sólida `#3A6EA5` | Cor padrão da área de trabalho no tema Clássico |
 
 ## Instalação
 
@@ -21,4 +21,4 @@ Clique com o botão direito na área de trabalho → **Preferências da área de
 
 - **Fotos (`*.jpg`)**: modo *Esticar* ou *Ajustar e cortar*.
 - **Texturas (`Tiles/`)**: modo *Lado a lado* (igual ao "Lado a lado" do XP).
-- **Visual Clássico autêntico**: modo *Cor sólida* com `#3A6EA5`, ou use `Windows Classic.png`.
+- **Visual Clássico autêntico**: modo *Cor sólida* com `#3A6EA5`, ou use `windows-classic.png`.

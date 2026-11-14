@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Gera as imagens do tema GTK "Windows-Classic" que vêm da mídia do XP ou
+# Gera as imagens do tema GTK "windows-classic" que vêm da mídia do XP ou
 # que são desenhadas aqui. O resto dos assets veio do tema Win2k, já
 # convertido para as cores do XP (veja tools/xp-dkshadow.py e o README).
 #
@@ -21,7 +21,7 @@
 set -euo pipefail
 
 I386="${1:?Uso: $0 /caminho/para/I386}"
-OUT="$(cd "$(dirname "$0")" && pwd)/Windows-Classic/gtk-3.0"
+OUT="$(cd "$(dirname "$0")" && pwd)/windows-classic/gtk-3.0"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 

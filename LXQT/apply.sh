@@ -57,7 +57,7 @@ def set_keys(path, section, values):
     open(path, "w").write(text[:head.end()] + body + text[end:])
 
 lxqt = os.path.join(cfg, "lxqt.conf")
-set_keys(lxqt, "General", {"theme": "Windows-Classic"})
+set_keys(lxqt, "General", {"theme": "windows-classic"})
 set_keys(lxqt, "Palette", {
     "base_color": "#ffffff", "highlight_color": "#0a246a",
     "highlighted_text_color": "#ffffff", "link_color": "#0000ff",

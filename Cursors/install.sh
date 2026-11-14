@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Instala o tema de cursores "Windows-Classic".
+# Instala o tema de cursores "windows-classic".
 #
 # Uso:
 #   ./install.sh            instala em ~/.local/share/icons
@@ -9,7 +9,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-THEME=Windows-Classic
+THEME=windows-classic
 SIZE=32
 APPLY=0
 [ "${1:-}" = "--apply" ] && APPLY=1
@@ -19,9 +19,16 @@ if [ "$(id -u)" -eq 0 ]; then
 else
     DEST="${XDG_DATA_HOME:-$HOME/.local/share}/icons"
 fi
+# Nome antigo (maiúsculo)
+OLD="$DEST/Windows-Classic"
+if [ -d "$OLD" ]; then
+    rm -rf "$OLD/cursors" "$OLD/index.theme"
+    rmdir "$OLD" 2>/dev/null || true
+fi
 mkdir -p "$DEST/$THEME"
 rm -rf "$DEST/$THEME/cursors"
-cp -a "$THEME/cursors" "$THEME/index.theme" "$DEST/$THEME/"
+cp -a "$THEME/cursors" "$DEST/$THEME/"
+cp -a "$THEME/index.theme" "$DEST/$THEME/"
 echo "Cursores instalados em: $DEST/$THEME"
 
 [ "$APPLY" -eq 1 ] || exit 0

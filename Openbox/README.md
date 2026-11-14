@@ -11,7 +11,7 @@ Tema de janelas do Openbox que reproduz o tema **Windows Clássico** do Windows 
 | Glifos dos botões (✕ ▁ □ ❐) e seta de submenu | Pixel art em `build.sh`, com o tamanho e a posição dos botões do Classic |
 | Fonte | **Noto Sans** (no XP era Tahoma) — veja [`../Fonts`](../Fonts) |
 
-Os glifos já vêm gerados em `Windows-Classic/openbox-3/*.xbm`. Para gerá-los de novo:
+Os glifos já vêm gerados em `windows-classic/openbox-3/*.xbm`. Para gerá-los de novo:
 
 ```bash
 ./build.sh
@@ -28,7 +28,7 @@ Os glifos já vêm gerados em `Windows-Classic/openbox-3/*.xbm`. Para gerá-los 
 ```
 
 O `--apply` define no `rc.xml`:
-- tema `Windows-Classic`;
+- tema `windows-classic`;
 - ordem dos botões `NLIMC` (ícone, título, minimizar, maximizar, fechar);
 - fonte Noto Sans 8 nos menus e **Noto Sans Bold 9** no título. O Openbox calcula a altura da barra e dos botões a partir da fonte, e com 9 a barra fica com 18 px e os botões com 14 px de altura, como no XP.
 

@@ -1,10 +1,10 @@
 [Desktop Entry]
 Type=X-GNOME-Metatheme
-Name=Windows-Classic
+Name=windows-classic
 Comment=Tema Clássico do Windows XP
 Encoding=UTF-8
 
 [X-GNOME-Metatheme]
-GtkTheme=Windows-Classic
-CursorTheme=Windows-Classic
+GtkTheme=windows-classic
+CursorTheme=windows-classic
 CursorSize=32

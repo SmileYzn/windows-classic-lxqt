@@ -6,10 +6,10 @@ A estrutura e as ferramentas vêm do projeto [win2k](https://github.com/smileyzn
 
 | Pasta | Conteúdo |
 |---|---|
-| `Windows-Classic/cursors/` | Tema Xcursor: 22 cursores (32 e 64 px) e 91 apelidos (nomes CSS, X11 e hashes do Qt/Mozilla) |
-| `Windows-Classic/build/png/` | PNG de cada cursor (32 px original e 64 px ampliado sem suavização) |
-| `Windows-Classic/build/*.in` | Configuração do `xcursorgen` (tamanho e ponto ativo) |
-| `Windows-Classic/build/tools/` | `wincur.py` (decodifica cursores do Windows) e `build_cursors.py` |
+| `windows-classic/cursors/` | Tema Xcursor: 22 cursores (32 e 64 px) e 91 apelidos (nomes CSS, X11 e hashes do Qt/Mozilla) |
+| `windows-classic/build/png/` | PNG de cada cursor (32 px original e 64 px ampliado sem suavização) |
+| `windows-classic/build/*.in` | Configuração do `xcursorgen` (tamanho e ponto ativo) |
+| `windows-classic/build/tools/` | `wincur.py` (decodifica cursores do Windows) e `build_cursors.py` |
 
 ## Origem de cada cursor
 
@@ -31,7 +31,7 @@ sudo ./install.sh       # todo o sistema (/usr/share/icons)
 ./install.sh --apply    # instala e ativa no LXQt, tamanho 32
 ```
 
-O `--apply` grava `cursor_theme=Windows-Classic` e `cursor_size=32` na seção `[Mouse]` de `~/.config/lxqt/session.conf`, e `Inherits=Windows-Classic` em `~/.icons/default/index.theme` (apps fora do LXQt). A mudança vale a partir do próximo login. Também dá para escolher em **Configurações do LXQt → Teclado e Mouse → Cursor**.
+O `--apply` grava `cursor_theme=windows-classic` e `cursor_size=32` na seção `[Mouse]` de `~/.config/lxqt/session.conf`, e `Inherits=windows-classic` em `~/.icons/default/index.theme` (apps fora do LXQt). A mudança vale a partir do próximo login. Também dá para escolher em **Configurações do LXQt → Teclado e Mouse → Cursor**.
 
 ## Gerar de novo a partir da ISO
 
@@ -39,4 +39,4 @@ O `--apply` grava `cursor_theme=Windows-Classic` e `cursor_size=32` na seção `
 ./build.sh /caminho/para/I386     # requer cabextract, 7zip, imagemagick, xorg-xcursorgen
 ```
 
-Para só remontar os Xcursor a partir dos PNG: `Windows-Classic/build/make.sh`.
+Para só remontar os Xcursor a partir dos PNG: `windows-classic/build/make.sh`.

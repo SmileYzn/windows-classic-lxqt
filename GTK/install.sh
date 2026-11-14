@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Instala o tema GTK "Windows-Classic" (GTK 3 e GTK 4/libadwaita).
+# Instala o tema GTK "windows-classic" (GTK 3 e GTK 4/libadwaita).
 #
-# O tema fica na mesma pasta do tema do Openbox (themes/Windows-Classic):
+# O tema fica na mesma pasta do tema do Openbox (themes/windows-classic):
 # este script só troca as subpastas do GTK e não mexe em openbox-3.
 #
 # Uso:
@@ -21,7 +21,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-THEME=Windows-Classic
+THEME=windows-classic
 APPLY=0
 DEFAULT=0
 SYSTEM=0
@@ -45,6 +45,10 @@ fi
 
 mkdir -p "$DEST"
 rm -rf "$DEST/gtk-3.0" "$DEST/gtk-3.22" "$DEST/gtk-3.24" "$DEST/gtk-4.0"
+# Nome antigo (maiúsculo): tira só a parte do GTK; a pasta some quando o Openbox também sair
+OLD="$(dirname "$DEST")/Windows-Classic"
+rm -rf "$OLD/gtk-3.0" "$OLD/gtk-3.22" "$OLD/gtk-3.24" "$OLD/gtk-4.0" "$OLD/index.theme"
+rmdir "$OLD" 2>/dev/null || true
 cp -r "$THEME/gtk-3.0" "$THEME/gtk-4.0" "$DEST/"
 ln -s gtk-3.0 "$DEST/gtk-3.22"
 ln -s gtk-3.0 "$DEST/gtk-3.24"

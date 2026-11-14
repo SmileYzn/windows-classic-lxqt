@@ -8,7 +8,7 @@
 set -euo pipefail
 
 I386="${1:?Uso: $0 /caminho/para/I386}"
-THEME="$(cd "$(dirname "$0")" && pwd)/Windows-Classic"
+THEME="$(cd "$(dirname "$0")" && pwd)/windows-classic"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 
