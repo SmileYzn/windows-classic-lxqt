@@ -25,13 +25,11 @@ fi
 DSHARE="${DESTDIR:-}$SHARE"
 
 mkdir -p "$BASE/themes" "$BASE/palettes"
-rm -rf "${BASE:?}/themes/$THEME"
-rm -rf "$BASE/themes/Windows-Classic" "$BASE/palettes/Windows-Classic"   # nome antigo (maiúsculo)
-cp -r "$THEME" "$BASE/themes/"
+mkdir -p "$BASE/themes/$THEME"
+cp -r "$THEME/." "$BASE/themes/$THEME/"
 install -m644 "palettes/$THEME" "$BASE/palettes/$THEME"
 
 # Menu Iniciar no formato do XP
-rm -rf "$DSHARE" "$(dirname "$DSHARE")/Windows-Classic"   # nome antigo (maiúsculo)
 mkdir -p "$DSHARE/applications" "$DSHARE/desktop-directories" "$MENUS"
 install -m755 menu/windows-classic-open-folder "$DSHARE/"
 for f in menu/applications/*.desktop; do

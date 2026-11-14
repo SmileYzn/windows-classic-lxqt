@@ -36,7 +36,6 @@ else
     DEST="${XDG_DATA_HOME:-$HOME/.local/share}/sddm/themes/$THEME"
 fi
 
-rm -rf "$DEST" "$(dirname "$DEST")/Windows-Classic"   # nome antigo (maiúsculo)
 mkdir -p "$DEST/images"
 install -m644 "$THEME"/*.qml "$THEME"/qmldir "$THEME"/metadata.desktop \
     "$THEME"/theme.conf "$THEME"/preview.png "$DEST/"
@@ -59,7 +58,6 @@ install -m755 windows-classic-xsetup "$ROOT$XSETUP"
 
 CONF_DIR="$ROOT/etc/sddm.conf.d"
 CONF="$CONF_DIR/windows-classic.conf"
-rm -f "$CONF_DIR/Windows-Classic.conf"   # nome antigo (maiúsculo)
 mkdir -p "$CONF_DIR"
 if [ -e "$CONF" ]; then
     cp -a "$CONF" "$CONF.bak.$(date +%Y%m%d%H%M%S)"

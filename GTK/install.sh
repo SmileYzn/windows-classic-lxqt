@@ -44,14 +44,11 @@ else
 fi
 
 mkdir -p "$DEST"
-rm -rf "$DEST/gtk-3.0" "$DEST/gtk-3.22" "$DEST/gtk-3.24" "$DEST/gtk-4.0"
-# Nome antigo (maiúsculo): tira só a parte do GTK; a pasta some quando o Openbox também sair
-OLD="$(dirname "$DEST")/Windows-Classic"
-rm -rf "$OLD/gtk-3.0" "$OLD/gtk-3.22" "$OLD/gtk-3.24" "$OLD/gtk-4.0" "$OLD/index.theme"
-rmdir "$OLD" 2>/dev/null || true
-cp -r "$THEME/gtk-3.0" "$THEME/gtk-4.0" "$DEST/"
-ln -s gtk-3.0 "$DEST/gtk-3.22"
-ln -s gtk-3.0 "$DEST/gtk-3.24"
+mkdir -p "$DEST/gtk-3.0" "$DEST/gtk-4.0"
+cp -r "$THEME/gtk-3.0/." "$DEST/gtk-3.0/"
+cp -r "$THEME/gtk-4.0/." "$DEST/gtk-4.0/"
+ln -sfn gtk-3.0 "$DEST/gtk-3.22"
+ln -sfn gtk-3.0 "$DEST/gtk-3.24"
 install -m644 "$THEME/index.theme" "$DEST/index.theme"
 echo "Tema GTK instalado em: $DEST"
 

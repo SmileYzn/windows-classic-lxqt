@@ -56,7 +56,7 @@ Os passos do projeto serão do 1 ao 7.
 - Cada pasta tem um `README.md` com a origem de cada recurso e as limitações. Leia o da pasta antes de mexer nela.
 
 ## Decisões já tomadas
-- **Nome de todos os pacotes do tema: `windows-classic`, sem espaços.** Vale para pastas instaladas (`themes/`, `icons/`, `sddm/themes/`, `lxqt/themes/`, `lxqt/palettes/`, `wallpapers/`, `/usr/share/windows-classic`) e para o `Name=` dos `index.theme`/`metadata.desktop`. Arquivos de configuração e entradas de menu seguem em minúsculas (`60-windows-classic.conf`, `windows-classic.glsl`, `windows-classic-*.desktop`). Os instaladores apagam as instalações antigas com o nome `Windows-Classic` (maiúsculo).
+- **Nome de todos os pacotes do tema: `windows-classic`, sem espaços.** Vale para pastas instaladas (`themes/`, `icons/`, `sddm/themes/`, `lxqt/themes/`, `lxqt/palettes/`, `wallpapers/`, `/usr/share/windows-classic`) e para o `Name=` dos `index.theme`/`metadata.desktop`. Arquivos de configuração e entradas de menu seguem em minúsculas (`60-windows-classic.conf`, `windows-classic.glsl`, `windows-classic-*.desktop`).
 - Wallpapers, sons, cursores e imagens do menu Iniciar ficam no repositório (decisão do usuário), com o aviso de marcas da Microsoft no README principal.
 - Openbox: título em Noto Sans Bold 9 + `padding.height: 1`, para a barra ter 18 px e os botões 14 px, como no XP. Glifos dos botões em pixel art no `Openbox/build.sh` (não usa a Marlett).
 - Cursores: base do projeto win2k (os cursores do XP são idênticos aos do Windows 2000).
@@ -70,6 +70,7 @@ Os passos do projeto serão do 1 ao 7.
 
 # Como trabalhar
 - **Instalação para testes é no sistema e quem roda é o usuário.** Ao terminar uma tarefa, mostre os comandos (`sudo .../install.sh` e, se houver, o passo de ativação no usuário). Não instale nada no sistema nem na conta do usuário por conta própria.
+- Os instaladores só instalam: nada de comandos para remover arquivos ou temas antigos (decisão do usuário). As cópias sobrescrevem no lugar (`cp -r origem/. destino/`, `ln -sfn`), então reinstalar não cria pastas aninhadas.
 - Todo `install.sh` deve aceitar `sudo` (caminhos do sistema), modo usuário e, quando fizer sentido, `DESTDIR=... ./install.sh --system` para testar numa raiz falsa.
 - Scripts que alteram configuração do usuário fazem backup (`*.bak.AAAAMMDDhhmmss`) e mexem só nas chaves do tema.
 - **Nunca capturar a tela real do usuário** (DISPLAY=:0). Testes visuais só em X isolado: `Xvfb :99` + `HOME`/`XDG_CONFIG_HOME`/`XDG_DATA_HOME` falsos no scratchpad + `dbus-run-session`, com `openbox`, `lxqt-panel`, `xterm`, `xdotool` e captura com `xwd -root | magick xwd:- saida.png`. Se precisar ver a sessão real (GPU, picom), peça ao usuário.

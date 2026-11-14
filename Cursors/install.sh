@@ -19,15 +19,8 @@ if [ "$(id -u)" -eq 0 ]; then
 else
     DEST="${XDG_DATA_HOME:-$HOME/.local/share}/icons"
 fi
-# Nome antigo (maiúsculo)
-OLD="$DEST/Windows-Classic"
-if [ -d "$OLD" ]; then
-    rm -rf "$OLD/cursors" "$OLD/index.theme"
-    rmdir "$OLD" 2>/dev/null || true
-fi
-mkdir -p "$DEST/$THEME"
-rm -rf "$DEST/$THEME/cursors"
-cp -a "$THEME/cursors" "$DEST/$THEME/"
+mkdir -p "$DEST/$THEME/cursors"
+cp -af "$THEME/cursors/." "$DEST/$THEME/cursors/"
 cp -a "$THEME/index.theme" "$DEST/$THEME/"
 echo "Cursores instalados em: $DEST/$THEME"
 

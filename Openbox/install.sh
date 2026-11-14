@@ -18,13 +18,8 @@ if [ "$(id -u)" -eq 0 ]; then
 else
     DEST="${XDG_DATA_HOME:-$HOME/.local/share}/themes"
 fi
-mkdir -p "$DEST"
-rm -rf "$DEST/windows-classic/openbox-3"
-# Nome antigo (maiúsculo): tira só o openbox-3; a pasta some quando o GTK também sair
-rm -rf "$DEST/Windows-Classic/openbox-3"
-rmdir "$DEST/Windows-Classic" 2>/dev/null || true
-mkdir -p "$DEST/windows-classic"
-cp -r windows-classic/openbox-3 "$DEST/windows-classic/"
+mkdir -p "$DEST/windows-classic/openbox-3"
+cp -r windows-classic/openbox-3/. "$DEST/windows-classic/openbox-3/"
 echo "Tema instalado em: $DEST/windows-classic"
 
 [ "$APPLY" -eq 1 ] || exit 0
