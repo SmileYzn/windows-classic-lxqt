@@ -4,8 +4,10 @@
 # Uso:
 #   sudo ./install.sh            instala em /usr/share/sddm/themes
 #   sudo ./install.sh --enable   instala e ativa: cria /etc/sddm.conf.d/windows-classic.conf
-#                                (tema e cursor windows-classic); vale no próximo boot
-#                                ou após "sudo systemctl restart sddm"
+#                                (tema, cursor windows-classic e o script
+#                                windows-classic-xsetup, que aplica na tela de logon a
+#                                resolução salva no LXQt e o cursor do fundo); vale no
+#                                próximo boot ou após "sudo systemctl restart sddm"
 #   ./install.sh                 instala em ~/.local/share/sddm/themes, só para testar
 #                                com o sddm-greeter-qt6 --test-mode (o SDDM não lê de lá)
 #   DESTDIR=/raiz/falsa ./install.sh --system [--enable]
@@ -50,6 +52,11 @@ fi
 
 [ "$ENABLE" -eq 1 ] || exit 0
 
+# Preparação da tela antes do logon: resolução do LXQt e cursor do fundo
+XSETUP=/usr/share/sddm/scripts/windows-classic-xsetup
+mkdir -p "$ROOT$(dirname "$XSETUP")"
+install -m755 windows-classic-xsetup "$ROOT$XSETUP"
+
 CONF_DIR="$ROOT/etc/sddm.conf.d"
 CONF="$CONF_DIR/windows-classic.conf"
 rm -f "$CONF_DIR/Windows-Classic.conf"   # nome antigo (maiúsculo)
@@ -66,6 +73,11 @@ fi
         echo "CursorTheme=$CURSORS"
         echo "CursorSize=32"
     fi
+    echo
+    echo "[X11]"
+    echo "# Roda o Xsetup do SDDM e aplica a resolução salva no LXQt pelo último"
+    echo "# usuário e o cursor do fundo (ver windows-classic-xsetup)"
+    echo "DisplayCommand=$XSETUP"
 } > "$CONF"
 echo "Tema ativado em: $CONF"
 grep -q '^CursorTheme' "$CONF" || \

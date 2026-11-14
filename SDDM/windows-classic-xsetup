@@ -1,0 +1,76 @@
+#!/bin/sh
+# Windows Classic: preparação da tela antes do logon do SDDM.
+#
+# O SDDM roda este script (como root, com DISPLAY e XAUTHORITY da tela de
+# logon) pela opção [X11] DisplayCommand, que o install.sh --enable define.
+#
+# 1. Roda o Xsetup original do SDDM.
+# 2. Resolução: aplica a configuração de monitor que o último usuário salvou
+#    no LXQt ([currentConfig] de ~/.config/lxqt/lxqt-config-monitor.conf).
+#    Sem isso, a tela de logon fica no modo que o driver escolher (numa VM,
+#    o tamanho da janela) e só muda depois do login.
+# 3. Cursor do fundo: o SDDM roda "xsetroot -cursor_name left_ptr" com o
+#    tema, mas desiste depois de 1 s ("Could not setup default cursor"),
+#    o que acontece no boot. Aqui não há esse limite.
+#
+# Para testar: SDDM_STATE_FILE e LXQT_MONITOR_CONF trocam os arquivos lidos;
+# XRANDR troca o comando (ex.: XRANDR=echo).
+
+[ -x /usr/share/sddm/scripts/Xsetup ] && /usr/share/sddm/scripts/Xsetup
+
+XRANDR=${XRANDR:-xrandr}
+STATE=${SDDM_STATE_FILE:-/var/lib/sddm/state.conf}
+
+# --- 2. Resolução ----------------------------------------------------------
+monitor_conf() {
+    if [ -n "${LXQT_MONITOR_CONF:-}" ]; then
+        echo "$LXQT_MONITOR_CONF"
+        return
+    fi
+    [ -r "$STATE" ] || return
+    user=$(awk -F= '/^\[/{s=$0} s=="[Last]" && $1=="User"{print $2; exit}' "$STATE")
+    case "$user" in ''|*[!A-Za-z0-9._-]*) return ;; esac
+    home=$(getent passwd "$user" | cut -d: -f6)
+    [ -n "$home" ] && echo "$home/.config/lxqt/lxqt-config-monitor.conf"
+}
+
+conf=$(monitor_conf)
+if [ -n "$conf" ] && [ -r "$conf" ]; then
+    # Uma linha por saída: nome ativo largura altura taxa x y principal rotação
+    awk -F= '
+        /^\[/ { sec = $0; next }
+        sec != "[currentConfig]" { next }
+        match($1, /^settings\\[0-9]+\\/) {
+            i = substr($1, 10, RLENGTH - 10); k = substr($1, RLENGTH + 1)
+            v[i, k] = $2; idx[i] = 1
+        }
+        END {
+            for (i in idx)
+                if (v[i, "connected"] == "true")
+                    print v[i, "name"], v[i, "enabled"], v[i, "currentModeWidth"],
+                          v[i, "currentModeHeight"], v[i, "currentModeRate"],
+                          v[i, "xPos"], v[i, "yPos"], v[i, "primary"], v[i, "rotation"]
+        }' "$conf" |
+    while read -r name enabled w h rate x y primary rot; do
+        # Só aceita valores esperados: o arquivo é do usuário e isto roda como root
+        case "$name" in ''|*[!A-Za-z0-9._-]*) continue ;; esac
+        if [ "$enabled" != "true" ]; then
+            "$XRANDR" --output "$name" --off
+            continue
+        fi
+        for n in "$w" "$h" "$x" "$y"; do
+            case "$n" in ''|*[!0-9-]*) continue 2 ;; esac
+        done
+        case "$rot" in 2) rot=left ;; 4) rot=inverted ;; 8) rot=right ;; *) rot=normal ;; esac
+        set -- --output "$name" --mode "${w}x${h}" --pos "${x}x${y}" --rotate "$rot"
+        case "$rate" in ''|*[!0-9.]*) ;; *) set -- "$@" --rate "$rate" ;; esac
+        [ "$primary" = "true" ] && set -- "$@" --primary
+        # Se o modo exato não existir, tenta sem a taxa
+        "$XRANDR" "$@" 2>/dev/null || "$XRANDR" --output "$name" --mode "${w}x${h}" --pos "${x}x${y}"
+    done
+fi
+
+# --- 3. Cursor do fundo com o tema (XCURSOR_THEME vem do SDDM) --------------
+xsetroot -cursor_name left_ptr 2>/dev/null
+
+exit 0

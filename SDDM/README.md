@@ -47,7 +47,15 @@ sudo ../Cursors/install.sh       # opcional: cursor do XP também na tela de log
 sudo ./install.sh --enable       # instala e ativa
 ```
 
-O `--enable` cria `/etc/sddm.conf.d/windows-classic.conf` com `Current=windows-classic` e, se os cursores estiverem instalados, `CursorTheme=windows-classic`. Se o arquivo já existir, ele faz backup antes. A mudança vale no próximo boot ou após `sudo systemctl restart sddm`, que **encerra a sessão gráfica**.
+O `--enable` cria `/etc/sddm.conf.d/windows-classic.conf` com `Current=windows-classic` e, se os cursores estiverem instalados, `CursorTheme=windows-classic`. Se o arquivo já existir, ele faz backup antes.
+
+Ele também instala `/usr/share/sddm/scripts/windows-classic-xsetup` e o define como `[X11] DisplayCommand`. O SDDM roda esse script como root antes da tela de logon:
+
+- **Resolução**: aplica a configuração de monitor que o último usuário salvou no LXQt (`[currentConfig]` de `~/.config/lxqt/lxqt-config-monitor.conf`; o usuário vem de `/var/lib/sddm/state.conf`). Sem isso, a tela de logon fica no modo que o driver escolhe (numa VM, o tamanho da janela, ex.: 2415x1171) e só muda depois do login. O script só aceita números e nomes de saída válidos, porque lê um arquivo do usuário.
+- **Cursor do fundo**: o SDDM define o cursor da janela raiz com `xsetroot`, mas desiste depois de 1 s ("Could not setup default cursor" no `journalctl -u sddm`), o que acontece no boot. O script define de novo, sem esse limite.
+- Antes disso, roda o `Xsetup` original do SDDM.
+
+Para testar o script sem mudar a tela: `XRANDR=echo LXQT_MONITOR_CONF=~/.config/lxqt/lxqt-config-monitor.conf ./windows-classic-xsetup` mostra os comandos do `xrandr`. A mudança vale no próximo boot ou após `sudo systemctl restart sddm`, que **encerra a sessão gráfica**.
 
 Sem o `--enable`, o script só copia o tema para `/usr/share/sddm/themes/windows-classic`.
 
