@@ -118,5 +118,6 @@ Já usadas no projeto:
 
 ```bash
 sudo pacman -S --needed cabextract 7zip icoutils imagemagick xorg-xcursorgen git github-cli \
-    xorg-server-xvfb xorg-xwd xterm xdotool noto-fonts libcanberra picom sddm gtk3-demos
+    xorg-server-xvfb xorg-xwd xterm xdotool noto-fonts picom sddm gtk3-demos \
+    xorg-xrandr xorg-xsetroot python
 ```
