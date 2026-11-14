@@ -9,7 +9,7 @@ Tema de janelas do Openbox que reproduz o tema **Windows Clássico** do Windows 
 | Cores (título, botões, menus) | `I386/HIVEDEF.INF` → `HKCU\Control Panel\Colors` |
 | Medidas (moldura de 4 px, título de 18 px) | `I386/HIVEDEF.INF` → `WindowMetrics` |
 | Glifos dos botões (✕ ▁ □ ❐) e seta de submenu | Pixel art em `build.sh`, com o tamanho e a posição dos botões do Classic |
-| Fonte | **Noto Sans** (no XP era Tahoma) — veja [`../Fonts`](../Fonts) |
+| Fonte | **Noto Sans** do sistema (no XP era Tahoma) |
 
 Os glifos já vêm gerados em `windows-classic/openbox-3/*.xbm`. Para gerá-los de novo:
 
@@ -20,8 +20,8 @@ Os glifos já vêm gerados em `windows-classic/openbox-3/*.xbm`. Para gerá-los 
 ## Instalação
 
 ```bash
-# 1. Fontes (Noto Sans) — veja ../Fonts
-../Fonts/install.sh
+# 1. Fonte Noto Sans
+sudo pacman -S --needed noto-fonts
 
 # 2. Instala e ativa o tema (cria backup de ~/.config/openbox/rc.xml)
 ./install.sh --apply

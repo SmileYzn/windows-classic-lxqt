@@ -11,7 +11,6 @@ Tema do LXQt (painel, menu Iniciar, Executar e notificações) e paleta de cores
 | `windows-classic/lxqt-panel.qss` | Barra de tarefas com relevo, botão **Iniciar**, menu Iniciar com a faixa lateral, bandeja afundada com o relógio e dicas amarelas |
 | `windows-classic/lxqt-runner.qss` | Executar (Alt+F2) com moldura e botão de fechar do Classic |
 | `windows-classic/lxqt-notificationd.qss` | Notificações no estilo do balão do XP |
-| `windows-classic/wallpaper.cfg` | Fundo sólido `#3A6EA5` (de `../Wallpapers`) |
 | `windows-classic/images/` | Imagens geradas por `build.sh` |
 | `palettes/windows-classic` | Paleta de cores do esquema Clássico |
 | `menu/` | Menu Iniciar no formato do XP (arquivo `.menu`, entradas e pastas) |

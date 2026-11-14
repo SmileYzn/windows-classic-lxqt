@@ -55,8 +55,6 @@ fi
 [ "$SIMULAR" -eq 1 ] || sudo -v    # pede a senha uma vez só
 
 etapa "1/3 Instalando no sistema"
-run sudo Wallpapers/install.sh
-run sudo Fonts/install.sh
 run sudo Openbox/install.sh
 run sudo Cursors/install.sh
 run sudo LXQT/install.sh
@@ -91,7 +89,6 @@ fi
 etapa "Pronto"
 cat <<EOF
   - Faça logout e login para o cursor e os apps GTK pegarem o tema.
-  - Papel de parede: Preferências da área de trabalho → /usr/share/wallpapers/windows-classic
 EOF
 if [ "$SDDM" -eq 1 ]; then
     echo "  - A tela de logon muda no próximo boot (ou: sudo systemctl restart sddm — encerra a sessão)."

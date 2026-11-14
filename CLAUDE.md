@@ -14,9 +14,7 @@ Há uma pasta que você deve me perguntar onde está:
 - O caminho muda de máquina para máquina: pergunte antes de rodar qualquer `build.sh`.
 
 Fontes de informação que já usamos na `I386`:
-- `HIVEDEF.INF`: cores do esquema Clássico (`Control Panel\Colors`), medidas (`WindowMetrics`) e o esquema de sons (`AppEvents`);
-- `LAYOUT.INF`: nomes longos dos arquivos (ex.: `XPDING.WA_` → "Windows XP Ding.wav");
-- `SHL_IMG.IN_` e `ACCESSOR.IN_`: nomes dos papéis de parede;
+- `HIVEDEF.INF`: cores do esquema Clássico (`Control Panel\Colors`) e medidas (`WindowMetrics`);
 - `EXPLORER.EX_`: bandeira do botão Iniciar (bitmap 176) e faixa "Windows XP Professional" (bitmap 167);
 - `USER32.DL_` e `OLE32.DL_`: cursores; `USER32.DL_` também tem os ícones de mensagem (101 aviso, 103 erro, 104 informação);
 - `BROWSEUI.DL_`: animação do Explorer (bitmap 306, 41 quadros de 22x22; idêntica à do Windows 2000);
@@ -29,37 +27,34 @@ Arquivos `*.XX_` são CAB: extrair com `cabextract`. Recursos de `.exe`/`.dll`: 
 - Um tema de janelas para o openbox;
 - Um tema para o ambiente LXQT;
 - Sem pacote de ícones próprio, por decisão do usuário (muito custoso para manter por agora): o tema usa qualquer tema de ícones instalado e nenhum componente depende de ícones;
-- Os sons do Windows XP: o LXQT não tem suporte nativo, então a pasta Sounds guarda só os arquivos .wav (sem tema nem instalação);
-- As fontes do tema: Noto Sans do próprio Linux. Não usamos as fontes da Microsoft (nem Tahoma, MS Sans Serif ou Marlett);
+- Sem papéis de parede e sem sons próprios, por decisão do usuário: o LXQt usa o fundo e os sons que o usuário escolher;
+- Fonte do tema: Noto Sans do sistema (pacote `noto-fonts`), sem pasta própria. Não usamos as fontes da Microsoft (nem Tahoma, MS Sans Serif ou Marlett);
 - Um tema GTK (`GTK/`), derivado do GTK 3 e do GTK 4 do win2k com as cores do XP Clássico. Sem GTK 2 (o `gtk2` saiu dos repositórios do Arch; decisão do usuário);
 - O picom é um extra opcional (`Extras/Picom`): o tema do Openbox não pode depender dele.
 
 # Caminhos
 As pastas no projeto:
 
-1. Wallpapers -> Tema de planos de fundo
-2. Fonts -> Fontes do tema (Noto Sans)
-3. Openbox -> Tema para openbox
-4. Cursors -> Tema de cursores
-5. Sounds -> Arquivos de som do Windows XP (só os .wav)
-6. LXQT -> Tema do LXQT
-7. SDDM -> Tema para o SDDM Login Manager
+1. Openbox -> Tema para openbox
+2. Cursors -> Tema de cursores
+3. LXQT -> Tema do LXQT
+4. SDDM -> Tema para o SDDM Login Manager
 
 Fora da numeração: `GTK` (temas GTK 3 e GTK 4/libadwaita) e `Extras/Picom`.
 
-Os passos do projeto serão do 1 ao 7.
+Os passos do projeto serão do 1 ao 4.
 
 ## Estado atual
-- **Os 7 passos estão prontos e publicados no GitHub**, mais `GTK` e `Extras/Picom`.
-- Passo 7 (SDDM): tema QML próprio (Qt 6, SDDM 0.21), sem QtQuick.Controls. O `install.sh --enable` também liga o `SDDM/windows-classic-xsetup` (`[X11] DisplayCommand`), que aplica na tela de logon a resolução salva no LXQt e o cursor do fundo. Aguardando o teste do usuário depois de um boot.
+- **Os 4 passos estão prontos e publicados no GitHub**, mais `GTK` e `Extras/Picom`.
+- Passo 4 (SDDM): tema QML próprio (Qt 6, SDDM 0.21), sem QtQuick.Controls. O `install.sh --enable` também liga o `SDDM/windows-classic-xsetup` (`[X11] DisplayCommand`), que aplica na tela de logon a resolução salva no LXQt e o cursor do fundo. Aguardando o teste do usuário depois de um boot.
 - GTK 3 e GTK 4 prontos (`GTK/windows-classic/gtk-3.0` e `gtk-4.0`).
 - `instalar.sh` (raiz) instala tudo no sistema com `sudo`, ativa no usuário e reinicia o painel. Opções: `--picom`, `--sem-sddm`, `--sem-painel`, `--simular` (só mostra os comandos). Ao criar um componente novo, acrescente-o ali e no README principal.
 - Cada pasta tem um `README.md` com a origem de cada recurso e as limitações. Leia o da pasta antes de mexer nela.
 - Próximos passos: nenhum pendente. Ajustes vêm dos testes do usuário na máquina dele (VM VirtualBox com Arch, LXQt 2.5, Openbox, SDDM em X11).
 
 ## Decisões já tomadas
-- **Nome de todos os pacotes do tema: `windows-classic`, sem espaços.** Vale para pastas instaladas (`themes/`, `icons/`, `sddm/themes/`, `lxqt/themes/`, `lxqt/palettes/`, `wallpapers/`, `/usr/share/windows-classic`) e para o `Name=` dos `index.theme`/`metadata.desktop`. Arquivos de configuração e entradas de menu seguem em minúsculas (`60-windows-classic.conf`, `windows-classic.glsl`, `windows-classic-*.desktop`).
-- Wallpapers, sons, cursores e imagens do menu Iniciar ficam no repositório (decisão do usuário), com o aviso de marcas da Microsoft no README principal.
+- **Nome de todos os pacotes do tema: `windows-classic`, sem espaços.** Vale para pastas instaladas (`themes/`, `icons/`, `sddm/themes/`, `lxqt/themes/`, `lxqt/palettes/`, `/usr/share/windows-classic`) e para o `Name=` dos `index.theme`/`metadata.desktop`. Arquivos de configuração e entradas de menu seguem em minúsculas (`windows-classic.glsl`, `windows-classic-*.desktop`).
+- Cursores e imagens do menu Iniciar ficam no repositório (decisão do usuário), com o aviso de marcas da Microsoft no README principal.
 - Openbox: título em Noto Sans Bold 9 + `padding.height: 1`, para a barra ter 18 px e os botões 14 px, como no XP. Glifos dos botões em pixel art no `Openbox/build.sh` (não usa a Marlett).
 - Cursores: base do projeto win2k (os cursores do XP são idênticos aos do Windows 2000).
 - LXQt: o menu do XP é o `mainmenu` (menu em cascata), com o arquivo `LXQT/menu/windows-classic-applications.menu`. O `fancymenu` só recebe o botão Iniciar igual.

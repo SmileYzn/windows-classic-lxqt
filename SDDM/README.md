@@ -74,11 +74,10 @@ Em `/usr/share/sddm/themes/windows-classic/theme.conf.user` (crie o arquivo, que
 ```ini
 [General]
 color=#3A6EA5                                          # cor de fundo
-background=/usr/share/wallpapers/windows-classic/Bliss.jpg   # imagem (vazio = só a cor)
+background=/caminho/para/imagem.jpg                    # imagem (vazio = só a cor)
 backgroundMode=fill                                    # stretch, fill, fit, center ou tile
 ```
 
-Os papéis de parede do XP são instalados por [`../Wallpapers`](../Wallpapers).
 
 ## Limitações conhecidas
 

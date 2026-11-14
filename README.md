@@ -1,20 +1,17 @@
 # Windows Classic para LXQt
 
-Tema completo para o **LXQt** que reproduz o tema **Clássico do Windows XP**: janelas, barra de tarefas, menu Iniciar, cursores, papéis de parede, sons e tela de logon.
+Tema completo para o **LXQt** que reproduz o tema **Clássico do Windows XP**: janelas, barra de tarefas, menu Iniciar, cursores e tela de logon.
 
 ![Barra de tarefas](LXQT/windows-classic/preview.png)
 
-Os recursos (cores, medidas, imagens, cursores e sons) foram tirados da mídia de instalação do **Windows XP Professional SP3**, quase sempre dos arquivos `.INF` e das DLLs da pasta `I386`. Cada componente tem um `build.sh` para gerar tudo de novo a partir da sua própria ISO. A fonte é a **Noto Sans**; nenhuma fonte da Microsoft é usada.
+Os recursos (cores, medidas, imagens e cursores) foram tirados da mídia de instalação do **Windows XP Professional SP3**, quase sempre dos arquivos `.INF` e das DLLs da pasta `I386`. Cada componente tem um `build.sh` para gerar tudo de novo a partir da sua própria ISO. A fonte é a **Noto Sans** do sistema (pacote `noto-fonts`); nenhuma fonte da Microsoft é usada.
 
 ## Componentes
 
 | Pasta | O que é | Situação |
 |---|---|---|
-| [`Wallpapers`](Wallpapers) | 20 papéis de parede do XP, 11 texturas em mosaico e o fundo sólido `#3A6EA5` | ✅ |
-| [`Fonts`](Fonts) | Noto Sans + substituição de Tahoma / MS Sans Serif / MS Shell Dlg pela Noto Sans | ✅ |
 | [`Openbox`](Openbox) | Tema de janelas: barra de título em degradê, botões do Classic, moldura de 4 px | ✅ |
 | [`Cursors`](Cursors) | Cursores padrão do XP (32 e 64 px) | ✅ |
-| [`Sounds`](Sounds) | Os 35 sons `.wav` do XP (só os arquivos: o LXQt não tem sons de evento) | ✅ |
 | [`GTK`](GTK) | Tema GTK 3 e GTK 4/libadwaita com as cores do Clássico do XP (apps GTK iguais aos Qt) | ✅ |
 | [`LXQT`](LXQT) | Painel, botão e menu Iniciar do XP, Executar, notificações e paleta de cores | ✅ |
 | [`Extras/Picom`](Extras/Picom) | Opcional: relevo 3D de 2 px nas janelas e sombra dos menus, via picom | ✅ |
@@ -40,8 +37,6 @@ Tudo de uma vez (instala no sistema, ativa no seu usuário e reinicia o painel):
 Ou, componente por componente, no sistema:
 
 ```bash
-sudo Wallpapers/install.sh
-sudo Fonts/install.sh
 sudo Openbox/install.sh
 sudo Cursors/install.sh
 sudo LXQT/install.sh
@@ -84,4 +79,4 @@ GTK/build.sh     /caminho/para/I386
 
 ## Aviso
 
-Windows, Windows XP e as imagens, cursores e sons incluídos são marcas e obras da Microsoft Corporation. Este projeto não tem relação com a Microsoft.
+Windows, Windows XP e as imagens e cursores incluídos são marcas e obras da Microsoft Corporation. Este projeto não tem relação com a Microsoft.
